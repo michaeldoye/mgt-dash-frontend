@@ -1,0 +1,10 @@
+.sidenav {
+  width: 250px;
+  box-shadow: none!important;
+  margin-top: 64px;
+}
+
+.content {
+  min-height: calc(100vh - 64px);
+  height: 100vh;
+}

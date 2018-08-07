@@ -1,0 +1,21 @@
+<mat-form-field appearance="standard" class="search-filter" *ngIf="showFilters" [@slideAnimation]>
+  <input [formControl]="searchQuery" matInput placeholder="Search..." (keyup)="onSearchChange.emit(searchQuery.value)">
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<mat-form-field [style.font-size]="'14px'" *ngIf="showFilters" [@slideAnimation]>
+  <mat-select placeholder="Sort By..." [formControl]="sortBy" (selectionChange)="onFilterChange.emit(sortBy.value)">
+    <mat-option>--</mat-option>
+    <mat-option *ngFor="let option of sortOptions" [value]="option.value">
+      {{option.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-icon-button *ngIf="showFilters" [@slideAnimation]>
+  <mat-icon>swap_vert</mat-icon>
+</button>
+
+<button class="filter-toggle" [class.pushdown]="showFilters" [@preventInitial] mat-icon-button (click)="showFilters = !showFilters">
+  <mat-icon [@spinInOut]="'in'" *ngIf="!showFilters">sort</mat-icon>
+  <mat-icon [@spinInOut]="'in'" *ngIf="showFilters">close</mat-icon>
+</button>

@@ -1,0 +1,25 @@
+.container.dark-theme {
+  background: #303030!important;
+}
+
+.offline-notification {
+  position: fixed;
+  bottom: 0px;
+  background: #F44336;
+  width: 100%;
+  color: #ffffff;
+  padding: 10px 0px;
+  text-align: center;
+  z-index: 99;
+}
+
+.offline-notification mat-icon {
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.loader {
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+}

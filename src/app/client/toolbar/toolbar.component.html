@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <button [@preventInitial] *ngIf="auth.user | async" class="menu-toggle" mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon [@spinInOut]="'in'" *ngIf="!sidenav.isOpen">menu</mat-icon>
+    <mat-icon [@spinInOut]="'in'" *ngIf="sidenav.isOpen">close</mat-icon>
+  </button>
+
+  <span>{{ appTitle }}</span>
+
+  <span fxFlex></span>
+    
+  <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu" *ngIf="auth.user | async">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">    
+    <button mat-menu-item routerLink="login">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+    <button mat-menu-item>
+      <mat-slide-toggle 
+        [checked]="theme.isDarkTheme"
+        color="primary"
+        (change)="theme.changeTheme()">
+        Night Mode
+      </mat-slide-toggle>
+    </button>      
+  </mat-menu>  
+</mat-toolbar>

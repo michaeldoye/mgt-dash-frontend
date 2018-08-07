@@ -1,0 +1,31 @@
+<div class="grid-container" fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center stretch">
+
+  <mat-toolbar>
+
+    <h1>Dashboard</h1>
+
+    <span fxFlex></span>
+
+    <mtg-dash-filter 
+      [sortOptions]="sortOptions" 
+      (onFilterChange)="fetchSets($event)" 
+      (onSearchChange)="query = $event">
+    </mtg-dash-filter>
+
+  </mat-toolbar>
+
+  <div 
+    class="card-container" 
+    *ngIf="(sets$ | async) as sets else loading" 
+    fxLayout="row wrap" 
+    fxLayoutGap="10px">
+
+      <mtg-dash-card-sets *ngFor="let set of sets?.data.setData | serchPipe: query" [set]="set" fxFlex="32.5%"></mtg-dash-card-sets>
+  </div>
+  
+  <ng-template #loading>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-spinner diameter="45" strokeWidth="3"></mat-spinner>
+    </div>
+  </ng-template>
+</div>

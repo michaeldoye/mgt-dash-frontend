@@ -1,0 +1,26 @@
+<mat-card 
+  [class.mat-elevation-z7]="isActive" 
+  (mouseover)="isActive = true" 
+  (mouseout)="isActive = false">
+
+  <mat-nav-list disableRipple>
+    <mat-list-item>
+      <i matListAvatar class="ss ss-3x ss-{{ set?.code.toLowerCase() }}"></i>
+      <a class="title" matLine [routerLink]="['explore', set?.code.toLowerCase()]" href="#">{{ set?.name }}</a>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item disableRipple>
+          <mat-icon>explore</mat-icon>
+          <span>Explore Set</span>
+        </button>
+        <button mat-menu-item disableRipple>Item 2</button>
+      </mat-menu>
+      <p matLine>
+        <span> {{ set?.releaseDate }} </span>
+        <span class="demo-2"> -- {{ set?.type }} </span>
+      </p>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-card>

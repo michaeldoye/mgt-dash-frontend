@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+
+  .login {
+    width: 380px;
+  }
+
+  .login-content {
+    padding: 24px 42px 42px;
+  }
+
+  md-input-container {
+    width: 100%;
+    margin: 6px 0;
+  }
+
+  .extra-options {
+    margin: 16px 0 32px;
+  }
+
+  .note {
+    margin: 24px 0 0;
+    text-align: center;
+  }
+
+  sat-popover .dial {
+    margin-bottom: 8px;
+  }
+
+  button.sign-in-options {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    .mat-icon {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+    }
+  }
+
+}

@@ -1,0 +1,32 @@
+<mat-card 
+  [class.mat-elevation-z7]="isActive" 
+  (mouseover)="isActive = true" 
+  (mouseout)="isActive = false">
+
+  <mat-nav-list disableRipple>
+    <mat-list-item>
+      <img matListAvatar *ngIf="!imgLoaded" class="card-img" [src]="'assets/placeholder.png'" />
+      <img matListAvatar [hidden]="!imgLoaded" (load)="imgLoaded = true" class="card-img" [src]="card.imageUrl" />
+      <a class="title" matLine [routerLink]="['explore', card?.id]" href="#">{{ card?.name }}</a>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item disableRipple>
+          <mat-icon>explore</mat-icon>
+          <span>Explore card</span>
+        </button>
+        <button mat-menu-item disableRipple>Item 2</button>
+      </mat-menu>
+      <p matLine>
+        <span>
+          <i [matTooltip]="card?.rarity" class="ss ss-ons ss-{{card?.rarity.toLowerCase()}}"></i>&nbsp;
+          <i *ngFor="let color of card?.colorIdentity" class="ms ms-{{ color.toLowerCase() || 'c' }}"></i>&nbsp;
+          <i [matTooltip]="card?.type" class="ms ms-{{ card?.type.split('—')[0].replace('Legendary', '').trim().toLowerCase() }}"></i>
+        </span>
+        <br>
+        <span class="demo-2"> <small [innerHTML]="card?.text | cardDescription"></small> </span>
+      </p>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-card>

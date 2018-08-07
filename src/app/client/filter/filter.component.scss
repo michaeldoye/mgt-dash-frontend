@@ -1,0 +1,20 @@
+:host {
+  .search-filter {
+    font-size: 14px !important;
+    margin-right: 10px;
+  }
+  .filter-toggle .mat-icon {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
+  button.pushdown {
+    position: relative;
+    top: 15px;
+  }
+
+  button.filter-toggle:not(.pushdown) {
+    position: relative;
+    top: 5px;
+  }
+}

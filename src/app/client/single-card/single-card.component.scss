@@ -1,0 +1,28 @@
+:host {
+  margin-bottom: 10px;
+
+
+  .mat-card {
+    padding: 0px;
+  } 
+  
+  .mat-nav-list {
+    padding-top: 0px
+  }
+
+  img.card-img {
+    border-radius: 0!important;
+    height: auto!important;
+    min-width: 0px;
+    -webkit-transition: all 0.8s ease!important;
+    -moz-transition: all 0.8s ease!important;
+    transition: min-width 0.4s ease!important;
+    z-index: 98;
+  }
+
+  img.card-img:hover {
+    min-width: 300px!important;
+    z-index: 99!important;
+  }
+
+}

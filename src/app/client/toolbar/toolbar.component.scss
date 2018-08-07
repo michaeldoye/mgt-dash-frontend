@@ -1,0 +1,16 @@
+:host {
+  mat-toolbar {
+    position: fixed;
+    z-index: 99;
+  }
+
+  .menu-toggle .mat-icon {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
+  
+  .side-toggle, .menu-toggle {
+    margin-right: 15px;
+  }
+}

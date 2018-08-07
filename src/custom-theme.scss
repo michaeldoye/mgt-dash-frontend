@@ -1,0 +1,37 @@
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Open Sans, sans-serif',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(15px, 24px, 500)
+);
+
+@include mat-core($custom-typography);
+
+$light-default-primary: mat-palette($mat-deep-orange);
+$light-default-accent:  mat-palette($mat-amber, A200, A100, A400);
+$light-default-warn:    mat-palette($mat-red);
+$light-default-theme:   mat-light-theme($light-default-primary, $light-default-accent, $light-default-warn);
+
+@include angular-material-theme($light-default-theme);
+
+.light-blue-theme {
+
+  $light-blue-primary: mat-palette($mat-deep-orange);
+  $light-blue-accent:  mat-palette($mat-amber, A200, A100, A400);
+  $light-blue-warn:    mat-palette($mat-red);
+  $light-blue-theme:   mat-light-theme($light-blue-primary, $light-blue-accent, $light-blue-warn);
+
+  @include angular-material-theme($light-blue-theme);
+}
+
+.dark-theme {
+
+  $dark-primary: mat-palette($mat-deep-orange);
+  $dark-accent:  mat-palette($mat-cyan, A200, A100, A400);
+  $dark-warn:    mat-palette($mat-deep-orange);
+  $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include angular-material-theme($dark-theme);
+}
+
