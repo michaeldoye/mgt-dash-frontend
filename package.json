@@ -26,6 +26,7 @@
     "@angular/router": "^6.1.0",
     "@angular/service-worker": "^6.1.0",
     "@ncstate/sat-popover": "^2.1.1",
+    "@ngu/carousel": "^1.4.8",
     "angularfire2": "^5.0.0-rc.10",
     "apollo-angular": "^1.1.2",
     "apollo-angular-link-http": "^1.1.1",
@@ -40,6 +41,7 @@
     "ngx-infinite-scroll": "^6.0.1",
     "node-sass": "^4.9.2",
     "rxjs": "^6.2.2",
+    "rxjs-compat": "^6.2.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

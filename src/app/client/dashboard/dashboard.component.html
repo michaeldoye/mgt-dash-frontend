@@ -14,12 +14,30 @@
 
   </mat-toolbar>
 
+  <ngu-carousel
+    (mouseover)="onHover = true"
+    (mouseout)="onHover =  false"
+    *ngIf="(sets$ | async) as sets"
+    [inputs]="carouselOne"
+    (carouselLoad)="myfunc($event)">
+      <ngu-item NguCarouselItem *ngFor="let set of sets?.data.setData | slice:0:20">
+        <mat-card>
+          {{ set.name }}
+        </mat-card>
+      </ngu-item>
+      <button [class.hidden]="!onHover" mat-mini-fab NguCarouselPrev class='leftRs'>
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button [class.hidden]="!onHover" mat-mini-fab NguCarouselNext class='rightRs'>
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+  </ngu-carousel>
+
   <div 
     class="card-container" 
     *ngIf="(sets$ | async) as sets else loading" 
     fxLayout="row wrap" 
     fxLayoutGap="10px">
-
       <mtg-dash-card-sets *ngFor="let set of sets?.data.setData | serchPipe: query" [set]="set" fxFlex="32.5%"></mtg-dash-card-sets>
   </div>
   

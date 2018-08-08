@@ -6,6 +6,7 @@ import { BackendService } from '../../core/utils/backend.service';
 import { ButtonOpts } from 'mat-progress-buttons';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'mtg-dash-explore-set',
   templateUrl: './explore-set.component.html',
   styleUrls: ['./explore-set.component.scss']
@@ -13,16 +14,16 @@ import { ButtonOpts } from 'mat-progress-buttons';
 export class ExploreSetComponent implements OnInit {
 
   public cards$ = new BehaviorSubject(null);
-  public query: string = '';
-  public pageSize: number = 21;
-  public page: number = 1;
+  public query = '';
+  public pageSize = 21;
+  public page = 1;
   public selectedSet: string;
   public sortOptions = [
-    {name: "Name", value: "name"},
-    {name: "Type", value: "type"},
-    {name: "Rarity", value: "rarity"},
-    {name: "Power", value: "power"},
-    {name: "Toughness", value: "toughness"},
+    {name: 'Name', value: 'name'},
+    {name: 'Type', value: 'type'},
+    {name: 'Rarity', value: 'rarity'},
+    {name: 'Power', value: 'power'},
+    {name: 'Toughness', value: 'toughness'},
   ];
 
   public btnOpts: ButtonOpts = {
@@ -33,8 +34,9 @@ export class ExploreSetComponent implements OnInit {
     buttonColor: 'primary',
     spinnerColor: 'primary',
     fullWidth: false,
-    disabled: false
-  }
+    disabled: false,
+    mode: 'indeterminate'
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -67,7 +69,7 @@ export class ExploreSetComponent implements OnInit {
       });
 
     } else {
-      this.btnOpts.text = 'No more to show'
+      this.btnOpts.text = 'No more to show';
       this.btnOpts.disabled = true;
     }
     this.btnOpts.active = false;

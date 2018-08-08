@@ -14,7 +14,7 @@ import { firebaseEnvironment, environment, endpoint } from '../environments/envi
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { ApolloModule, Apollo } from 'apollo-angular';
-import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http'
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 @NgModule({
@@ -28,7 +28,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
     ApolloModule,
     HttpLinkModule,
     FormsModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
     CoreModule,
