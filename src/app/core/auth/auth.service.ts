@@ -30,26 +30,26 @@ export class AuthService {
       .then((user) => this.handleLogin(user))
       .catch((error) => this.loginResultNotificaton(error));
   }
-  
+
   public googleLogin(): Promise<any> {
     return this.socialSignIn(new auth.GoogleAuthProvider());
   }
 
   public facebookLogin(): Promise<any> {
     return this.socialSignIn(new auth.FacebookAuthProvider());
-  }  
+  }
 
   public githubLogin(): Promise<any> {
     return this.socialSignIn(new auth.GithubAuthProvider());
-  } 
+  }
 
   public twitterLogin(): Promise<any> {
     return this.socialSignIn(new auth.TwitterAuthProvider());
-  }  
+  }
 
   public signOut(): Promise<any> {
     return this.afAuth.auth.signOut();
-  }   
+  }
 
   private socialSignIn(provider: any): Promise<any> {
     this.loading.isLoading.next(true);
@@ -60,9 +60,9 @@ export class AuthService {
 
   private handleLogin(user: any) {
     if (user.uid !== null) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/'], { replaceUrl: true });
       this.loading.isLoading.next(false);
-    }    
+    }
   }
 
   private handleNewUser(user: any) {
@@ -72,9 +72,9 @@ export class AuthService {
   private loginResultNotificaton(message: string) {
     this.loading.isLoading.next(false);
     this.sb.open(
-      message, 
-      'OK', 
+      message,
+      'OK',
       {duration: 7000, horizontalPosition: 'left'}
-    );    
+    );
   }
 }

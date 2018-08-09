@@ -1,1 +1,18 @@
+<mat-card class="header-image" [ngStyle]="{'background-image': 'url(../assets/w4p8Zg1.jpg)'}">
+  <div class="overlay" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="25px">
+    <h1>Welcome to MTGdash</h1>
+    <span>Cards | Sets | Decks | News</span>
+    <div fxLayout="row" fxLayoutGap="10px" class="user-buttons">
+      <button mat-stroked-button color="primary" [routerLink]="['/login']">
+        <mat-icon>input</mat-icon>
+        LOGIN
+      </button>
+      <button mat-stroked-button color="accent" [routerLink]="['/login']">
+        <mat-icon>person_add</mat-icon>
+        SIGN UP
+      </button>
+    </div>
+  </div>
+</mat-card>
+
 <router-outlet></router-outlet>

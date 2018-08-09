@@ -6,6 +6,7 @@ import { fadeInOut } from './route.animation';
 import { LoadingService } from './core/utils/loading.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'ngxtemplate-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

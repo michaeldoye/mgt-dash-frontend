@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material';
 import { SidenavService } from './sidenav.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'ngxtemplate-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
@@ -11,15 +12,15 @@ import { SidenavService } from './sidenav.service';
 export class SidenavComponent implements OnInit {
 
   @ViewChild('sidenav') public sidenav: MatSidenav;
+  public showBanner = true;
 
   constructor(
     public theme: ThemeService,
-    public sv: SidenavService
+    public sv: SidenavService,
   ) { }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     // Store sidenav to service
     this.sv.setSidenav(this.sidenav);
   }
-
 }

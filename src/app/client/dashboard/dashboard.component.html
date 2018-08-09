@@ -1,45 +1,107 @@
 <div class="grid-container" fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center stretch">
 
-  <mat-toolbar>
-
+  <!-- <mat-toolbar>
     <h1>Dashboard</h1>
-
     <span fxFlex></span>
-
     <mtg-dash-filter 
       [sortOptions]="sortOptions" 
       (onFilterChange)="fetchSets($event)" 
       (onSearchChange)="query = $event">
     </mtg-dash-filter>
+  </mat-toolbar> -->
 
-  </mat-toolbar>
+  <div class="top-grid" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <mat-card class="first-grid-card" fxFlex="40%" style="background: url(../assets/7GEb8Qx.jpg)">
+      <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+        <h2>Cards</h2>
+      </div>
+    </mat-card>
+    <div fxFlex="60%" fxLayout="column" fxLayoutGap="10px">
+      <mat-card fxFlex="100%" style="background: url(../assets/iHshfmx.jpg)">
+        <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+          <h2>Sets</h2>
+        </div>
+      </mat-card>
+      <div fxFlex="100%" fxLayout="row" fxLayoutGap="10px">
+        <mat-card fxFlex="50%" style="background: url(../assets/rHBrR2T.jpg)">
+          <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+            <h2>Decks</h2>
+          </div>
+        </mat-card>
+        <mat-card fxFlex="50%" style="background: url(../assets/VcwwHAc.jpg)">
+          <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+            <h2>Account</h2>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 
-  <ngu-carousel
-    (mouseover)="onHover = true"
-    (mouseout)="onHover =  false"
-    *ngIf="(sets$ | async) as sets"
-    [inputs]="carouselOne"
-    (carouselLoad)="myfunc($event)">
+  <ng-container *ngIf="(sets$ | async) as sets else loading">
+
+    <mat-toolbar>
+      <h1>Sets</h1>
+      <span fxFlex></span>
+      <button mat-button color="primary">View More</button>
+    </mat-toolbar>
+
+    <ngu-carousel [inputs]="carouselOne" (carouselLoad)="myfunc($event)">
       <ngu-item NguCarouselItem *ngFor="let set of sets?.data.setData | slice:0:20">
-        <mat-card>
-          {{ set.name }}
+        <mat-card 
+          class="slider-card"
+          fxLayout="column" 
+          fxLayoutAlign="center center" 
+          [routerLink]="['explore', set?.code.toLowerCase()]">
+            <p><i class="ss ss-5x ss-{{ set?.code.toLowerCase() }}"></i></p>
+            <p>{{ set?.name }}</p>
         </mat-card>
       </ngu-item>
-      <button [class.hidden]="!onHover" mat-mini-fab NguCarouselPrev class='leftRs'>
+      <button mat-icon-button NguCarouselPrev class='leftRs'>
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button [class.hidden]="!onHover" mat-mini-fab NguCarouselNext class='rightRs'>
+      <button mat-icon-button NguCarouselNext class='rightRs'>
         <mat-icon>navigate_next</mat-icon>
       </button>
-  </ngu-carousel>
+    </ngu-carousel>
+  </ng-container>
 
-  <div 
+  <ng-container *ngIf="(latestSetCards$ | async) as cards">
+
+    <mat-toolbar>
+      <h1>Latest Release</h1>
+      <span fxFlex></span>
+      <button mat-button color="primary">View More</button>
+    </mat-toolbar>
+
+    <ngu-carousel [inputs]="carouselOne" (carouselLoad)="myfunc($event)">
+      <ngu-item NguCarouselItem *ngFor="let card of cards?.data.cardsBySet.cardData">
+        <mat-card 
+          [ngStyle]="{'background-image': 'url('+card.imageUrl+')'}"
+          class="slider-card single-card"
+          fxLayout="column" 
+          fxLayoutAlign="center center">
+            <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+              <h4>{{ card.name }}</h4>
+            </div>
+        </mat-card>
+      </ngu-item>
+      <button mat-icon-button NguCarouselPrev class='leftRs'>
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button mat-icon-button NguCarouselNext class='rightRs'>
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </ngu-carousel>
+
+  </ng-container>
+
+  <!-- <div 
     class="card-container" 
     *ngIf="(sets$ | async) as sets else loading" 
     fxLayout="row wrap" 
     fxLayoutGap="10px">
       <mtg-dash-card-sets *ngFor="let set of sets?.data.setData | serchPipe: query" [set]="set" fxFlex="32.5%"></mtg-dash-card-sets>
-  </div>
+  </div> -->
   
   <ng-template #loading>
     <div fxLayout="row" fxLayoutAlign="center center">

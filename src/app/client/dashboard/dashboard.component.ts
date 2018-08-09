@@ -16,15 +16,8 @@ export class DashboardComponent implements OnInit {
 
   public sets$: Observable<ApolloQueryResult<any>>;
   public sortBy = 'releaseDate';
-  public onHover = false;
-  public query = '';
-  public sortOptions = [
-    {name: 'Name', value: 'name'},
-    {name: 'Type', value: 'type'},
-    {name: 'Code', value: 'code'},
-    {name: 'Release Date', value: 'releaseDate'},
-  ];
   public carouselOne: NguCarousel;
+  public latestSetCards$: Observable<ApolloQueryResult<any>>;
 
   constructor(private api: BackendService) {}
 
@@ -32,7 +25,7 @@ export class DashboardComponent implements OnInit {
     this.fetchSets(this.sortBy);
     this.carouselOne = {
       grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
-      slide: 2,
+      slide: 5,
       speed: 400,
       animation: 'lazy',
       point: {
@@ -53,6 +46,7 @@ export class DashboardComponent implements OnInit {
   fetchSets(filter: string) {
     if (filter) {
       this.sets$ = this.api.getSets(filter);
+      this.latestSetCards$ = this.api.getCardsBySetName('m19', 20, 1);
     }
   }
 }

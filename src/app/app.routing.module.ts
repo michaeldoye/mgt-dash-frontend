@@ -8,14 +8,15 @@ import { DashboardComponent } from './client/dashboard/dashboard.component';
 
 
 const routes: Routes = [
-  { path: '',
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AdminAuthGuard],
+    // canActivate: [AdminAuthGuard],
     children: [
       {
         path: '',

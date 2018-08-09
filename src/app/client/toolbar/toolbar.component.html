@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <button [@preventInitial] *ngIf="auth.user | async" class="menu-toggle" mat-icon-button (click)="sidenav.toggle()">
+  <button [@preventInitial] class="menu-toggle" mat-icon-button (click)="sidenav.toggle()">
     <mat-icon [@spinInOut]="'in'" *ngIf="!sidenav.isOpen">menu</mat-icon>
     <mat-icon [@spinInOut]="'in'" *ngIf="sidenav.isOpen">close</mat-icon>
   </button>
@@ -8,7 +8,7 @@
 
   <span fxFlex></span>
     
-  <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu" *ngIf="auth.user | async">
+  <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">    

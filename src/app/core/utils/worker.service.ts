@@ -20,12 +20,12 @@ export class WorkerService {
   }
 
   private promptUser(e): void {
-    let snackBarRef = this.snackBar.open(
-      'A new version is available', 
+    const snackBarRef = this.snackBar.open(
+      'A new version is available',
       'Refresh',
       {horizontalPosition: 'left'}
     );
-    snackBarRef.onAction().subscribe(() => 
+    snackBarRef.onAction().subscribe(() =>
       this.updates.activateUpdate().then(() => document.location.reload()));
-  }  
+  }
 }

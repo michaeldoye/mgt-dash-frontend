@@ -1,11 +1,17 @@
 :host {
   .grid-container {
     margin: 20px;
+    max-width: 1300px!important;
+    margin: 0 auto;
   }
   
   .card-container .set{
     width: 100%;
     margin-bottom: 10px;
+  }
+
+  ngu-carousel {
+    margin-top: 20px;
   }
   
   ngu-item mat-card {
@@ -19,20 +25,77 @@
   }
 
   .rightRs, .leftRs {
-    top: 100px;
+    top: -32px;
     position: absolute;
     transition: opacity .3s;
   }
 
   .leftRs {
-    left: 0;
+    right: 35px;
   }
 
   .rightRs {
-    right: 0px;
+    right: 0;
   }
   
   .hidden {
     opacity: 0;
   }
+
+  .top-grid {
+    padding: 5px;
+  }
+
+  .top-grid mat-card:hover {
+    box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  }
+
+  .top-grid mat-card:not(.first-grid-card) {
+    min-height: 150px;
+    background-size: cover!important;
+    cursor: pointer;
+  }
+
+  .top-grid .first-grid-card {
+    height: 340px;
+    background-size: cover!important;
+    cursor: pointer;
+  }
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.4784313725490196);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: center;
+  }
+
+  .slider-card {
+    cursor: pointer;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    transition: all .3s ease-in-out;
+  }
+
+  mat-card.slider-card p {
+    margin-bottom: 0px;
+    margin-top: 10px;
+  }
+
+  .slider-card:hover {
+    box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  }
+
+  .slider-card.single-card:hover {
+    box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+  }
+  
 }
