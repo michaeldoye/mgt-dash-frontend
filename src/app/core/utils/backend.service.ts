@@ -31,6 +31,7 @@ export class BackendService {
         cardsBySet(set: "${setName}", pageSize: ${pageSize}, page: ${page}) {
           cardData {
             name
+            set
             imageUrl
             colors
             colorIdentity
@@ -76,8 +77,8 @@ export class BackendService {
           }
         }
       }
-    `;  
-    return this.apollo.watchQuery({query: news}).valueChanges;  
+    `;
+    return this.apollo.watchQuery({query: news}).valueChanges;
   }
 }
 

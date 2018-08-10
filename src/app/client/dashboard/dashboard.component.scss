@@ -103,6 +103,7 @@
 
   mat-card.header-image {
     margin-bottom: 35px;
+    margin-top: 64px;
     min-height: 450px;
     background-repeat: no-repeat!important;
     background-size: 100%!important;
@@ -114,6 +115,46 @@
     font-size: 125%;
     position: relative;
     top: 3px;
-  }  
+  } 
+  
+  mat-card.slider-card.single-card {
+    min-height: 350px!important;
+  }
+
+  mat-card.slider-card.single-card .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    transition: opacity .3s ease-in-out;
+  }
+
+  mat-card.slider-card.single-card .overlay:hover {
+    background: rgba(0, 0, 0, 0.078);
+  }
+
+  mat-card.slider-card.single-card .overlay:hover {
+    opacity: 0;
+  }
+
+  mat-card.slider-card.single-card .demo-2 {
+    position: absolute;
+    bottom: 0px;
+    padding: 15px;
+  }
+
+  mat-card.slider-card.news-card img {
+    margin-left: -20px;
+    margin-top: -20px;
+    max-width: 250px;
+  }
+
+  mat-card.slider-card.news-card {
+    min-height: 234px!important;
+  }
+
+  mat-card.slider-card.news-card mat-card-actions {
+    position: absolute;
+    width: 100%;
+    bottom: 25px;
+    right: 30px;
+  }
   
 }

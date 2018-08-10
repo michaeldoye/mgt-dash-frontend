@@ -55,7 +55,6 @@
   </div>
 
   <ng-container *ngIf="(sets$ | async) as sets else loading">
-
     <mat-toolbar>
       <h1>Sets</h1>
       <span fxFlex></span>
@@ -83,7 +82,6 @@
   </ng-container>
 
   <ng-container *ngIf="(latestSetCards$ | async) as cards">
-
     <mat-toolbar>
       <h1>Latest Set Release</h1>
       <span fxFlex></span>
@@ -97,8 +95,11 @@
           class="slider-card single-card"
           fxLayout="column" 
           fxLayoutAlign="center center">
-            <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+            <div class="overlay" fxLayout="column" fxLayoutAlign="center center">
+              <p><i class="ss ss-5x ss-{{ card?.set.toLowerCase() }}"></i></p>
               <h4>{{ card.name }}</h4>
+              <mat-divider></mat-divider>
+              <!-- <span class="demo-2"> <small [innerHTML]="card?.text | slice:0:50 | cardDescription"></small> </span> -->
             </div>
         </mat-card>
       </ngu-item>
@@ -123,17 +124,18 @@
 
     <ngu-carousel [inputs]="carouselOne" (carouselLoad)="myfunc($event)">
       <ngu-item NguCarouselItem *ngFor="let item of news?.data.getNewsFeed.items | slice:0:20">
-        <mat-card
-          [ngStyle]="{'background-image': 'url('+item.image+')'}" 
-          class="slider-card"
-          fxLayout="column" 
-          fxLayoutAlign="center center">
-            <a href="https://magic.wizards.com{{item.link}}" target="_blank">
-              <div class="overlay" fxLayout="column" fxLayoutAlign="center center">
-                <h4>{{ item.title }}</h4>
-                <span><small>{{ item.pubDate }}</small></span>
-              </div>
-            </a>
+        <mat-card class="slider-card news-card" style="text-align: left">
+          <img mat-card-image [src]="item.image || '../assets/7GEb8Qx.jpg'">
+          <mat-card-content>
+            <small>{{ item.title }}</small> | <small>{{ item.pubDate }}</small>
+          </mat-card-content>
+          <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+            <button mat-icon-button>
+              <a href="https://magic.wizards.com{{item.link}}" target="_blank" matTooltip="Read Article">
+                <mat-icon color="primary">open_in_new</mat-icon>
+              </a>
+            </button>
+          </mat-card-actions>
         </mat-card>
       </ngu-item>
       <button mat-icon-button NguCarouselPrev class='leftRs'>
