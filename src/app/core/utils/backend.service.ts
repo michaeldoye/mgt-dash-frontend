@@ -60,5 +60,24 @@ export class BackendService {
     `;
     return this.apollo.watchQuery({query: cardsBySetQ}).valueChanges;
   }
+
+  getNewsFeed(): Observable<ApolloQueryResult<any>> {
+    const news = gql`
+      query {
+        getNewsFeed {
+          title
+          items {
+            title
+            image
+            link
+            contentSnippet
+            content
+            pubDate
+          }
+        }
+      }
+    `;  
+    return this.apollo.watchQuery({query: news}).valueChanges;  
+  }
 }
 

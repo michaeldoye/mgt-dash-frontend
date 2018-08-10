@@ -1,3 +1,20 @@
+<mat-card class="header-image" [ngStyle]="{'background-image': 'url(../assets/w4p8Zg1.jpg)'}">
+  <div class="overlay" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="25px">
+    <h1>Welcome to MTGdash</h1>
+    <span>Cards | Sets | Decks | News</span>
+    <div fxLayout="row" fxLayoutGap="10px" class="user-buttons">
+      <button mat-stroked-button color="primary" [routerLink]="['/login']">
+        <mat-icon>input</mat-icon>
+        LOGIN
+      </button>
+      <button mat-stroked-button color="accent" [routerLink]="['/login']">
+        <mat-icon>person_add</mat-icon>
+        SIGN UP
+      </button>
+    </div>
+  </div>
+</mat-card>
+
 <div class="grid-container" fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center stretch">
 
   <!-- <mat-toolbar>
@@ -68,7 +85,7 @@
   <ng-container *ngIf="(latestSetCards$ | async) as cards">
 
     <mat-toolbar>
-      <h1>Latest Release</h1>
+      <h1>Latest Set Release</h1>
       <span fxFlex></span>
       <button mat-button color="primary">View More</button>
     </mat-toolbar>
@@ -94,6 +111,40 @@
     </ngu-carousel>
 
   </ng-container>
+
+
+  <ng-container *ngIf="(newsFeed$ | async) as news">
+
+    <mat-toolbar>
+      <h1>Magic: The Gathering News</h1>
+      <span fxFlex></span>
+      <button mat-button color="primary">View More</button>
+    </mat-toolbar>
+
+    <ngu-carousel [inputs]="carouselOne" (carouselLoad)="myfunc($event)">
+      <ngu-item NguCarouselItem *ngFor="let item of news?.data.getNewsFeed.items | slice:0:20">
+        <mat-card
+          [ngStyle]="{'background-image': 'url('+item.image+')'}" 
+          class="slider-card"
+          fxLayout="column" 
+          fxLayoutAlign="center center">
+            <a href="https://magic.wizards.com{{item.link}}" target="_blank">
+              <div class="overlay" fxLayout="column" fxLayoutAlign="center center">
+                <h4>{{ item.title }}</h4>
+                <span><small>{{ item.pubDate }}</small></span>
+              </div>
+            </a>
+        </mat-card>
+      </ngu-item>
+      <button mat-icon-button NguCarouselPrev class='leftRs'>
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button mat-icon-button NguCarouselNext class='rightRs'>
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </ngu-carousel>
+
+  </ng-container>  
 
   <!-- <div 
     class="card-container" 

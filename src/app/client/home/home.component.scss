@@ -2,29 +2,3 @@
   padding-top: 25px;
   margin-top: 20px;
 }
-
-mat-card.header-image {
-  margin-bottom: 35px;
-  min-height: 450px;
-  background-repeat: no-repeat!important;
-  background-size: 100%!important;
-  background-position: center top!important;
-}
-
-.overlay {
-  background: rgba(0, 0, 0, 0.705);
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  color: white;
-  text-align: center;
-}
-
-.user-buttons mat-icon {
-  margin-right: 4px;
-  font-size: 125%;
-  position: relative;
-  top: 3px;
-}

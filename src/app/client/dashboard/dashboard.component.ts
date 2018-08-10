@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   public sortBy = 'releaseDate';
   public carouselOne: NguCarousel;
   public latestSetCards$: Observable<ApolloQueryResult<any>>;
+  public newsFeed$:  Observable<ApolloQueryResult<any>>;
 
   constructor(private api: BackendService) {}
 
@@ -47,6 +48,7 @@ export class DashboardComponent implements OnInit {
     if (filter) {
       this.sets$ = this.api.getSets(filter);
       this.latestSetCards$ = this.api.getCardsBySetName('m19', 20, 1);
+      this.newsFeed$ = this.api.getNewsFeed();
     }
   }
 }
