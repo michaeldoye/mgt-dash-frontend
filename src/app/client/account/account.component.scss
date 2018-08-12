@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  max-width: 1300px;
+  margin: 0 auto;
+  margin-top: 90px;
+
+  .deck-container {
+    padding: 20px 0px;
+  }
+  
+  .deck-container mat-card {
+    margin-bottom: 10px;
+  }
+}

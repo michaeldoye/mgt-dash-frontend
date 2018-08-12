@@ -13,4 +13,18 @@
   .side-toggle, .menu-toggle {
     margin-right: 15px;
   }
+  
+  img.avatar {
+    margin-right: 5px;
+    margin-left: 15px;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    border: 2px solid #CDDC39;
+  }
+  
+  span.user-name {
+    font-size: 72%;
+    text-transform: uppercase;
+  }
 }

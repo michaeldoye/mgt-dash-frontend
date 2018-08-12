@@ -7,6 +7,19 @@
   <span>{{ appTitle }}</span>
 
   <span fxFlex></span>
+
+  <ng-container *ngIf="(auth.user | async) as user">
+    <span class="user-name">
+      {{ user?.displayName || user?.email }}
+    </span>
+  
+    <span>
+      <img 
+        class="avatar" 
+        width="30px" 
+        [src]="user?.photoURL || 'https://api.adorable.io/avatars/40/happy.png'">
+    </span>
+  </ng-container>
     
   <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
@@ -16,6 +29,15 @@
       <mat-icon>exit_to_app</mat-icon>
       <span>Logout</span>
     </button>
+    <button mat-menu-item routerLink="/">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-menu-item routerLink="account">
+      <mat-icon>person</mat-icon>
+      <span>My Account</span>
+    </button>
+    <mat-divider></mat-divider>
     <button mat-menu-item>
       <mat-slide-toggle 
         [checked]="theme.isDarkTheme"

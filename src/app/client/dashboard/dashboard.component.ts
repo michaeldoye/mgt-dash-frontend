@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ApolloQueryResult } from 'apollo-client';
 import { BackendService } from '../../core/utils/backend.service';
 import { NguCarousel } from '@ngu/carousel';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -20,7 +21,7 @@ export class DashboardComponent implements OnInit {
   public latestSetCards$: Observable<ApolloQueryResult<any>>;
   public newsFeed$:  Observable<ApolloQueryResult<any>>;
 
-  constructor(private api: BackendService) {}
+  constructor(private api: BackendService, public auth: AngularFireAuth) {}
 
   ngOnInit(): void {
     this.fetchSets(this.sortBy);

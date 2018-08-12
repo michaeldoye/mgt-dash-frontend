@@ -20,6 +20,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatProgressButtons } from 'mat-progress-buttons';
 import { CardDescriptionPipe } from '../core/utils/card-description.pipe';
 import { NguCarouselModule } from '@ngu/carousel';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { NguCarouselModule } from '@ngu/carousel';
     SearchPipe,
     ExploreSetComponent,
     SingleCardComponent,
-    CardDescriptionPipe
+    CardDescriptionPipe,
+    AccountComponent
   ],
   providers: [
     AngularFireAuth,

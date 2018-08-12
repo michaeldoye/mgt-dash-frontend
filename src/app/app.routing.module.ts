@@ -5,6 +5,7 @@ import { LoginPageComponent } from './client/login-page/login-page.component';
 import { AdminAuthGuard } from './core/auth/admin-auth.guard';
 import { ExploreSetComponent } from './client/explore-set/explore-set.component';
 import { DashboardComponent } from './client/dashboard/dashboard.component';
+import { AccountComponent } from './client/account/account.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [AdminAuthGuard],
   },
 ];
 

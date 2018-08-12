@@ -2,7 +2,7 @@
   <div class="overlay" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="25px">
     <h1>Welcome to MTGdash</h1>
     <span>Cards | Sets | Decks | News</span>
-    <div fxLayout="row" fxLayoutGap="10px" class="user-buttons">
+    <div fxLayout="row" fxLayoutGap="10px" class="user-buttons" *ngIf="!(auth.user | async) as user else loggedIn">
       <button mat-stroked-button color="primary" [routerLink]="['/login']">
         <mat-icon>input</mat-icon>
         LOGIN
@@ -12,6 +12,14 @@
         SIGN UP
       </button>
     </div>
+    <ng-template #loggedIn>
+      <div fxLayout="row" class="user-buttons">
+        <button mat-stroked-button color="primary" [routerLink]="['/login']">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+        </button>
+      </div>
+    </ng-template>
   </div>
 </mat-card>
 
@@ -45,7 +53,7 @@
             <h2>Decks</h2>
           </div>
         </mat-card>
-        <mat-card fxFlex="50%" style="background: url(../assets/VcwwHAc.jpg)">
+        <mat-card fxFlex="50%" style="background: url(../assets/VcwwHAc.jpg)" [routerLink]="['/account']">
           <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
             <h2>Account</h2>
           </div>
@@ -98,7 +106,6 @@
             <div class="overlay" fxLayout="column" fxLayoutAlign="center center">
               <p><i class="ss ss-5x ss-{{ card?.set.toLowerCase() }}"></i></p>
               <h4>{{ card.name }}</h4>
-              <mat-divider></mat-divider>
               <!-- <span class="demo-2"> <small [innerHTML]="card?.text | slice:0:50 | cardDescription"></small> </span> -->
             </div>
         </mat-card>

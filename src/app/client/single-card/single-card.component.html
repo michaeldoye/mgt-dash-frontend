@@ -8,16 +8,9 @@
       <img matListAvatar *ngIf="!imgLoaded" class="card-img" [src]="'assets/placeholder.png'" />
       <img matListAvatar [hidden]="!imgLoaded" (load)="imgLoaded = true" class="card-img" [src]="card.imageUrl" />
       <a class="title" matLine [routerLink]="['explore', card?.id]" href="#">{{ card?.name }}</a>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
+      <button mat-icon-button [matMenuTriggerFor]="cardMenu">
         <mat-icon>more_vert</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item disableRipple>
-          <mat-icon>explore</mat-icon>
-          <span>Explore card</span>
-        </button>
-        <button mat-menu-item disableRipple>Item 2</button>
-      </mat-menu>
       <p matLine>
         <span>
           <i [matTooltip]="card?.rarity" class="ss ss-ons ss-{{card?.rarity.toLowerCase()}}"></i>&nbsp;
@@ -30,3 +23,35 @@
     </mat-list-item>
   </mat-nav-list>
 </mat-card>
+
+<mat-menu #cardMenu="matMenu">
+  <button mat-menu-item disableRipple [matMenuTriggerFor]="deckMenu">
+    <mat-icon>create_new_folder</mat-icon>
+    <span>Add To Deck</span>
+  </button>
+  <button mat-menu-item disableRipple>
+    <mat-icon>share</mat-icon>
+    <span>Share This Card</span>
+  </button>
+</mat-menu>
+
+<mat-menu #deckMenu="matMenu">
+  <ng-container *ngIf="(userDoc$ | async) as userDetails else noDecks">
+    <button mat-menu-item disableRipple>
+      <mat-icon>create</mat-icon>
+      <span>Create New</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button 
+      mat-menu-item 
+      disableRipple
+      (click)="addToDeck(index, card)"
+      *ngFor="let deck of userDetails?.decks; let index = index">
+      <mat-icon>folder</mat-icon>
+      {{ deck.name }}
+    </button>
+  </ng-container>
+  <ng-template #noDecks>
+    <button mat-menu-item disableRipple >Login or Signup</button>
+  </ng-template>
+</mat-menu>

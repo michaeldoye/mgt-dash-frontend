@@ -1,0 +1,52 @@
+<ng-container *ngIf="(auth.user | async) as user">
+  <mat-tab-group mat-stretch-tabs>
+    <mat-tab label="Profile"> 
+      <mat-list>
+        <h3 mat-subheader>Person Details</h3>
+        <mat-list-item>
+          <mat-icon mat-list-icon>person</mat-icon>
+          <h4 mat-line>Username</h4>
+          <p mat-line> {{ user?.displayName || 'Not Set' }} </p>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>mail</mat-icon>
+          <h4 mat-line>Email Address</h4>
+          <p mat-line> {{ user?.email }} </p>
+        </mat-list-item>
+      </mat-list>
+    </mat-tab>
+
+    <mat-tab label="Settings"> Content 2 </mat-tab>
+    <mat-tab label="My Decks">
+      <ng-container *ngIf="(userDoc$ | async) as userDetails">
+
+        <div *ngIf="!userDetails?.decks else decks" fxLayout="column" fxLayoutAlign="center center">
+          <h3>You have no decks yet.</h3>
+          <button mat-stroked-button color="primary">
+            <mat-icon>create_new_folder</mat-icon>
+            Create New
+          </button>
+        </div>
+
+        <ng-template #decks>
+          <div fxLayout="row wrap" fxLayoutGap="10px" class="deck-container">
+            <mat-card fxFlex="24.2%" *ngFor="let deck of userDetails?.decks">
+              <img mat-card-image src="../assets/7GEb8Qx.jpg">
+              <mat-card-content>
+                <small>{{ deck.name }}</small> | <small>{{ deck.set }}</small>
+              </mat-card-content>
+              <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+                <button mat-icon-button>
+                  <a href="https://magic.wizards.com" target="_blank" matTooltip="Read Article">
+                    <mat-icon color="primary">open_in_new</mat-icon>
+                  </a>
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>          
+        </ng-template>
+
+      </ng-container> 
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>
