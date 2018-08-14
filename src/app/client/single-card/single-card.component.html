@@ -44,14 +44,17 @@
     <mat-divider></mat-divider>
     <button 
       mat-menu-item 
-      disableRipple
-      (click)="addToDeck(index, card)"
-      *ngFor="let deck of userDetails?.decks; let index = index">
+      disableRipple    
+      *ngFor="let deck of userDetails"
+      (click)="addToDeck(deck.id, card)">
       <mat-icon>folder</mat-icon>
       {{ deck.name }}
     </button>
   </ng-container>
   <ng-template #noDecks>
-    <button mat-menu-item disableRipple >Login or Signup</button>
+    <button mat-menu-item disableRipple>
+      <mat-icon>create</mat-icon>
+      <span>Create New</span>
+    </button>
   </ng-template>
 </mat-menu>
