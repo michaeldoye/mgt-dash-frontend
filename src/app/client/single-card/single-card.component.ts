@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
+import { FirestoreService } from '../../core/utils/firestore.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -15,52 +13,25 @@ export class SingleCardComponent implements OnInit {
 
   @Input() card: any;
   public isActive: boolean;
-  public imgLoaded: boolean;
 
-  private userDocRef: AngularFirestoreCollection<any>;
+  public imgLoaded: boolean;
   public userDoc$: Observable<any>;
 
   constructor(
     public auth: AngularFireAuth,
-    private afs: AngularFirestore,
-    private sb: MatSnackBar
+    private fs: FirestoreService
   ) { }
 
   ngOnInit() {
     this.auth.user.subscribe((user) => {
       if (user) {
-        this.userDocRef = this.afs.doc<any>(`users/${user.uid}`).collection('decks');
-        this.userDoc$ = this.userDocRef.snapshotChanges().pipe(
-          map(actions => {
-            return actions.map(a => {
-              const data = a.payload.doc.data();
-              const id = a.payload.doc.id;
-              return { id, ...data };
-            })
-          })
-        )
+        this.userDoc$ = this.fs.userDecks(user.uid);
       }
     });
   }
 
   addToDeck(id: string, card: any) {
-    this.userDocRef.doc(id)
-      .collection('cards')
-      .add(card)
-      .then(() => {
-        this.sb.open(
-          'Card Added!',
-          '',
-          {duration: 5000, horizontalPosition: 'left'}
-        );        
-      })
-      .catch(error => {
-        this.sb.open(
-          `There was a problem adding the card; ${error}`, 
-          '',
-          {duration: 5000, horizontalPosition: 'left'}
-        )
-      });
+    this.fs.addToDeck(id, card);
   }
 
 }
