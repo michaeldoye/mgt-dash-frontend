@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class FirestoreService {
 
   constructor(
     private afs: AngularFirestore,
-    private sb: MatSnackBar
+    private sb: MatSnackBar,
+    private loader: LoadingService
   ) { }
 
   private userDocRef: AngularFirestoreCollection<any>;
@@ -30,18 +32,21 @@ export class FirestoreService {
   }
 
   addToDeck(deckId: string, card: any) {
+    this.loader.isLoading.next(true);
     this.userDocRef.doc(deckId)
       .collection('cards')
       .add(card)
       .then(() => { this.sb.open(
-          'Card Added!', '',
+          `${card.name} Added added to deck ${deckId}!`, '',
           {duration: 5000, horizontalPosition: 'left'}
-        );        
+        ); 
+        this.loader.isLoading.next(false);       
       })
       .catch(error => { this.sb.open(
           `There was a problem adding the card; ${error}`, '',
           {duration: 5000, horizontalPosition: 'left'}
         )
+        this.loader.isLoading.next(false);
       });    
   }
 }
