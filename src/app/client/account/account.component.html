@@ -37,7 +37,7 @@
               </mat-card-content>
               <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
                 <button mat-icon-button>
-                  <a href="https://magic.wizards.com" target="_blank" matTooltip="Read Article">
+                  <a [routerLink]="['deck', deck.id]" href="#" matTooltip="View Deck">
                     <mat-icon color="primary">open_in_new</mat-icon>
                   </a>
                 </button>

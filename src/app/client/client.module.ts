@@ -21,6 +21,8 @@ import { MatProgressButtons } from 'mat-progress-buttons';
 import { CardDescriptionPipe } from '../core/utils/card-description.pipe';
 import { NguCarouselModule } from '@ngu/carousel';
 import { AccountComponent } from './account/account.component';
+import { SingleDeckComponent } from './single-deck/single-deck.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -47,7 +49,9 @@ import { AccountComponent } from './account/account.component';
     ExploreSetComponent,
     SingleCardComponent,
     CardDescriptionPipe,
-    AccountComponent
+    AccountComponent,
+    SingleDeckComponent,
+    ProfileComponent
   ],
   providers: [
     AngularFireAuth,

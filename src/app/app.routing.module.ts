@@ -6,7 +6,8 @@ import { AdminAuthGuard } from './core/auth/admin-auth.guard';
 import { ExploreSetComponent } from './client/explore-set/explore-set.component';
 import { DashboardComponent } from './client/dashboard/dashboard.component';
 import { AccountComponent } from './client/account/account.component';
-
+import { SingleDeckComponent } from './client/single-deck/single-deck.component';
+import { ProfileComponent } from './client/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,6 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    // canActivate: [AdminAuthGuard],
     children: [
       {
         path: '',
@@ -35,8 +35,18 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    component: AccountComponent,
+    component: ProfileComponent,
     canActivate: [AdminAuthGuard],
+    children: [
+      {
+        path: '',
+        component: AccountComponent
+      },
+      {
+        path: 'deck/:id',
+        component: SingleDeckComponent
+      }
+    ]
   },
 ];
 
