@@ -21,17 +21,27 @@
       <span class="set-desc"><small>Block/Code: {{ cards?.setData.block ? cards?.setData.block : cards?.setData.code }}</small></span>
     </mat-toolbar-row>
   </mat-toolbar>
-  <div
-    class="card-container" 
-    fxLayout="row wrap" 
-    fxLayoutGap="10px">
 
+  <div class="list">
+    <h2>Done</h2>
+    <cdk-drop
+      #one
+      [connectedTo]="[two]">
+      drop
+    </cdk-drop>
+  </div>
+
+  <!-- <cdk-drop #two (dropped)="drop($event)" [data]="cards.cardData" [connectedTo]="[one]"> -->
+    <div class="card-container" 
+      fxLayout="row wrap" 
+      fxLayoutGap="10px" cdkDrop>
       <mtg-dash-single-card 
         *ngFor="let card of cards?.cardData | serchPipe: query" 
         [card]="card" 
         fxFlex="32.5%">
       </mtg-dash-single-card>
-  </div>
+    </div>
+  <!-- </cdk-drop> -->
   <div fxLayout="row" fxLayoutAlign="center center" class="load-more-container">
     <spinner-button [options]="btnOpts" (click)="loadMore()"></spinner-button>
   </div>

@@ -4,6 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { BackendService } from '../../core/utils/backend.service';
 import { ButtonOpts } from 'mat-progress-buttons';
+import {
+  CdkDragDrop,
+  CdkDrop,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk-experimental/drag-drop';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -73,5 +79,16 @@ export class ExploreSetComponent implements OnInit {
       this.btnOpts.disabled = true;
     }
     this.btnOpts.active = false;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 }
