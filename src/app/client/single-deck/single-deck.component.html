@@ -1,3 +1,18 @@
-<p>
-  single-deck works!
-</p>
+<ng-container *ngIf="(deck$ | async) as deck else loading">
+  <div
+    class="card-container" 
+    fxLayout="row wrap" 
+    fxLayoutGap="10px">  
+    <mtg-dash-single-card 
+      *ngFor="let card of deck" 
+      [card]="card" 
+      fxFlex="32.5%">
+    </mtg-dash-single-card>
+  </div>  
+</ng-container>
+
+<ng-template #loading>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-spinner diameter="45" strokeWidth="3"></mat-spinner>
+  </div>
+</ng-template>

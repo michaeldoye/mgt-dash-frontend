@@ -19,8 +19,8 @@ export class FirestoreService {
   ) { }
 
   userDecks(uid: string): Observable<any> {
-    const decks = this.afs.doc<any>(`users/${uid}`).collection('decks');
-    return decks.snapshotChanges().pipe(
+    this.userDocRef = this.afs.doc<any>(`users/${uid}`).collection('decks');
+    return this.userDocRef.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -51,7 +51,7 @@ export class FirestoreService {
   }
 
   deckCards(uid: string, deckId: string): Observable<any> {
-    const cards =  this.afs.doc<any>(`users/${uid}`)
+    const cards = this.afs.doc<any>(`users/${uid}`)
       .collection('decks')
       .doc(deckId)
       .collection('cards');

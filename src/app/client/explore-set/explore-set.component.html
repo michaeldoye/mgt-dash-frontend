@@ -30,7 +30,7 @@
         *ngFor="let card of cards?.cardData | serchPipe: query" 
         [card]="card" 
         fxFlex="32.5%">
-    </mtg-dash-single-card>
+      </mtg-dash-single-card>
   </div>
   <div fxLayout="row" fxLayoutAlign="center center" class="load-more-container">
     <spinner-button [options]="btnOpts" (click)="loadMore()"></spinner-button>

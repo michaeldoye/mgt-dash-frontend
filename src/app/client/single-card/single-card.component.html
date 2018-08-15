@@ -13,9 +13,9 @@
       </button>
       <p matLine>
         <span>
-          <i [matTooltip]="card?.rarity" class="ss ss-ons ss-{{card?.rarity.toLowerCase()}}"></i>&nbsp;
+          <i *ngIf="card?.rarity" [matTooltip]="card?.rarity" class="ss ss-ons ss-{{card?.rarity.toLowerCase()}}"></i>&nbsp;
           <i *ngFor="let color of card?.colorIdentity" class="ms ms-{{ color.toLowerCase() || 'c' }}"></i>&nbsp;
-          <i [matTooltip]="card?.type" class="ms ms-{{ card?.type.split('—')[0].replace('Legendary', '').trim().toLowerCase() }}"></i>
+          <i *ngIf="card?.type" [matTooltip]="card?.type" class="ms ms-{{ card?.type.split('—')[0].replace('Legendary', '').trim().toLowerCase() }}"></i>
         </span>
         <br>
         <span class="demo-2"> <small [innerHTML]="card?.text | cardDescription"></small> </span>
