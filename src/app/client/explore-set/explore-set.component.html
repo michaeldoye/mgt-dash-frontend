@@ -8,9 +8,7 @@
         &nbsp; 
         {{ cards?.setData.name }}
       </h1>
-  
       <span fxFlex></span>
-  
       <mtg-dash-filter [sortOptions]="sortOptions" (onSearchChange)="query = $event"></mtg-dash-filter>
     </mat-toolbar-row>
     <mat-toolbar-row>
@@ -22,26 +20,40 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <div class="list">
-    <h2>Done</h2>
-    <cdk-drop
-      #one
-      [connectedTo]="[two]">
-      drop
-    </cdk-drop>
-  </div>
 
-  <!-- <cdk-drop #two (dropped)="drop($event)" [data]="cards.cardData" [connectedTo]="[one]"> -->
-    <div class="card-container" 
-      fxLayout="row wrap" 
-      fxLayoutGap="10px" cdkDrop>
-      <mtg-dash-single-card 
-        *ngFor="let card of cards?.cardData | serchPipe: query" 
-        [card]="card" 
-        fxFlex="32.5%">
-      </mtg-dash-single-card>
-    </div>
-  <!-- </cdk-drop> -->
+
+
+
+
+  <cdk-drop class="card-container" 
+    #child
+    fxLayout="row wrap" 
+    fxLayoutGap="10px"
+    (dropped)="drop($event)"
+    [connectedTo]="connectedParent"
+    [data]="cards?.cardData">
+    <mtg-dash-single-card 
+      *ngFor="let card of cards?.cardData | serchPipe: query" 
+      [card]="card" 
+      fxFlex="32.5%"
+      (cdkDragStarted)="onDragStart($event)"
+      cdkDrag>
+    </mtg-dash-single-card>      
+  </cdk-drop>
+
+
+
+
+  <!-- <div class="card-container" 
+    fxLayout="row wrap" 
+    fxLayoutGap="10px">
+    <mtg-dash-single-card 
+      *ngFor="let card of cards?.cardData | serchPipe: query" 
+      [card]="card" 
+      fxFlex="32.5%">
+    </mtg-dash-single-card>
+  </div> -->
+
   <div fxLayout="row" fxLayoutAlign="center center" class="load-more-container">
     <spinner-button [options]="btnOpts" (click)="loadMore()"></spinner-button>
   </div>

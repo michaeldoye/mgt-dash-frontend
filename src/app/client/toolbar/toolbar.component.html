@@ -4,7 +4,7 @@
     <mat-icon [@spinInOut]="'in'" *ngIf="sidenav.isOpen">close</mat-icon>
   </button>
 
-  <span>{{ appTitle }}</span>
+  <span [style.cursor]="'pointer'" routerLink="home">{{ appTitle }}</span>
 
   <span fxFlex></span>
 

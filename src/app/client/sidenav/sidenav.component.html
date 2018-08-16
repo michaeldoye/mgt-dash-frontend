@@ -27,6 +27,14 @@
         </mat-slide-toggle>
       </mat-list-item>
     </mat-nav-list>
+    <cdk-drop
+      #parent
+      [connectedTo]="connectedChild"
+      (dropped)="drop($event)">
+      <div style="width: 100%;height: 300px;">
+        drop zone
+      </div>
+    </cdk-drop>    
   </mat-sidenav>
   <mat-sidenav-content class="content">
     <router-outlet></router-outlet>
