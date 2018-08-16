@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CdkDragDrop, CdkDrop, moveItemInArray, transferArrayItem } from '@angular/cdk-experimental/drag-drop';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class DragService {
 
@@ -17,7 +17,7 @@ export class DragService {
     this.parentConnector = parentRef;
   }
 
-  drop(event) {    
+  drop(event) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

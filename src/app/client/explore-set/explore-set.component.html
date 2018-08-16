@@ -20,31 +20,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-
-
-
-
-
-  <cdk-drop class="card-container" 
-    #child
-    fxLayout="row wrap" 
-    fxLayoutGap="10px"
-    (dropped)="drop($event)"
-    [connectedTo]="connectedParent"
-    [data]="cards?.cardData">
-    <mtg-dash-single-card 
-      *ngFor="let card of cards?.cardData | serchPipe: query" 
-      [card]="card" 
-      fxFlex="32.5%"
-      (cdkDragStarted)="onDragStart($event)"
-      cdkDrag>
-    </mtg-dash-single-card>      
-  </cdk-drop>
-
-
-
-
-  <!-- <div class="card-container" 
+  <div class="card-container" 
     fxLayout="row wrap" 
     fxLayoutGap="10px">
     <mtg-dash-single-card 
@@ -52,7 +28,7 @@
       [card]="card" 
       fxFlex="32.5%">
     </mtg-dash-single-card>
-  </div> -->
+  </div>
 
   <div fxLayout="row" fxLayoutAlign="center center" class="load-more-container">
     <spinner-button [options]="btnOpts" (click)="loadMore()"></spinner-button>

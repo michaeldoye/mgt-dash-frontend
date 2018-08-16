@@ -49,3 +49,17 @@ i.ms.inline {
 a.title.mat-line:hover {
   color: #ff5722;
 }
+
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  opacity: 0.5;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}

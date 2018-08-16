@@ -27,14 +27,27 @@
         </mat-slide-toggle>
       </mat-list-item>
     </mat-nav-list>
-    <cdk-drop
+    
+    <!-- <ng-container *ngIf="(decks$ | async) as decks">
+      <cdk-drop
+        *ngFor="let deck of (decks$ | async)" 
+        #parent
+        [connectedTo]="connectedChild"
+        (dropped)="drop($event)">
+          <div class="sidebar-deck">
+            {{ deck.name }}
+          </div>
+      </cdk-drop>
+    </ng-container> -->
+    <!-- <cdk-drop
       #parent
       [connectedTo]="connectedChild"
       (dropped)="drop($event)">
-      <div style="width: 100%;height: 300px;">
-        drop zone
-      </div>
-    </cdk-drop>    
+      <div class="sidebar-deck">
+        deck.name
+    </div>
+    </cdk-drop> -->
+
   </mat-sidenav>
   <mat-sidenav-content class="content">
     <router-outlet></router-outlet>

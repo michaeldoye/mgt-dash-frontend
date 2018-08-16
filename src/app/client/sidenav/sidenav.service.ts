@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class SidenavService {
   private sidenav: MatSidenav;
   public isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
-  
+
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   public setSidenav(sidenav: MatSidenav) {

@@ -1,17 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { BackendService } from '../../core/utils/backend.service';
 import { ButtonOpts } from 'mat-progress-buttons';
-import {
-  CdkDragDrop,
-  CdkDrop,
-  moveItemInArray,
-  transferArrayItem
-} from '@angular/cdk-experimental/drag-drop';
-import { SidenavService } from '../sidenav/sidenav.service';
-import { DragService } from '../../core/utils/drag.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -20,9 +12,6 @@ import { DragService } from '../../core/utils/drag.service';
   styleUrls: ['./explore-set.component.scss']
 })
 export class ExploreSetComponent implements OnInit {
-
-  @ViewChild('child') child: CdkDrop;
-  public connectedParent: CdkDrop[];
 
   public cards$ = new BehaviorSubject(null);
   public query = '';
@@ -53,14 +42,9 @@ export class ExploreSetComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private api: BackendService,
-    private nav: SidenavService,
-    private dragService: DragService
   ) { }
 
   ngOnInit() {
-    this.dragService.setChildConnector(this.child);
-    this.connectedParent = [this.dragService.parentConnector];
-
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         this.selectedSet = params.get('set');
@@ -91,13 +75,4 @@ export class ExploreSetComponent implements OnInit {
     this.btnOpts.active = false;
   }
 
-  drop(event: CdkDragDrop<any[]>) {
-    console.log('from child', event);
-    this.nav.close();
-    // this.dragService.drop(event);
-  }
-
-  onDragStart(event) {
-    this.nav.open();
-  }
 }
