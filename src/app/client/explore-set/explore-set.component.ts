@@ -84,7 +84,6 @@ export class ExploreSetComponent implements OnInit {
         cardData: currentCards.concat(newCards),
         setData: data.data.cardsBySet.setData,
       });
-
     } else {
       this.btnOpts.text = 'No more to show';
       this.btnOpts.disabled = true;
