@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { LoadingService } from './loading.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class FirestoreService {
   constructor(
     private afs: AngularFirestore,
     private sb: MatSnackBar,
-    private loader: LoadingService
+    private loader: LoadingService,
+    private router: Router
   ) { }
 
   userDecks(uid: string): Observable<any> {
@@ -35,14 +37,11 @@ export class FirestoreService {
     this.loader.isLoading.next(true);
     this.userDocRef.doc(deckId)
       .collection('cards')
-      .add(card)
-      .then(() => { this.sb.open(
-          `${card.name} Added added to deck ${deckId}!`, '',
-          {duration: 5000, horizontalPosition: 'left'}
-        );
+      .add(card).then(() => { 
+        this.successSnackBar(card.name, deckId);
         this.loader.isLoading.next(false);
-      })
-      .catch(error => { this.sb.open(
+      }).catch(error => { 
+        this.sb.open(
           `There was a problem adding the card; ${error}`, '',
           {duration: 5000, horizontalPosition: 'left'}
         );
@@ -56,5 +55,34 @@ export class FirestoreService {
       .doc(deckId)
       .collection('cards');
     return cards.valueChanges();
+  }
+
+  createDeck(uid: string, deck: any) {
+    this.loader.isLoading.next(true);
+    return this.afs.doc<any>(`users/${uid}`)
+      .collection('decks')
+      .add({name: deck.name})
+      .then(doc => this.addToDeck(doc.id, deck.card));
+  }
+
+  deleteDeck(uid: string, deckId: string, deckName: string) {
+    this.loader.isLoading.next(true);
+    return this.afs.doc<any>(`users/${uid}`)
+      .collection('decks')
+      .doc(deckId)
+      .delete().then(() => {
+        this.loader.isLoading.next(false);
+        this.sb.open(`Deck ${deckName} Permanently Deleted;`, 'OK', 
+          {duration: 5000, horizontalPosition: 'left'})
+      });
+  }
+
+  successSnackBar(cardName: string, deckId: string) {
+    this.sb.open(
+      `${cardName} Added;`, 'View Deck',
+      {duration: 10000, horizontalPosition: 'left'}
+    ).onAction().subscribe(() => {
+      this.router.navigate(['account/deck', deckId]);
+    });    
   }
 }

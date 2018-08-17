@@ -15,7 +15,7 @@ import { CardSetsComponent } from './card-sets/card-sets.component';
 import { FilterComponent } from './filter/filter.component';
 import { ExploreSetComponent } from './explore-set/explore-set.component';
 import { SearchPipe } from '../core/utils/search.pipe';
-import { SingleCardComponent } from './single-card/single-card.component';
+import { SingleCardComponent, DeckDialogComponent } from './single-card/single-card.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatProgressButtons } from 'mat-progress-buttons';
 import { CardDescriptionPipe } from '../core/utils/card-description.pipe';
@@ -23,6 +23,7 @@ import { NguCarouselModule } from '@ngu/carousel';
 import { AccountComponent } from './account/account.component';
 import { SingleDeckComponent } from './single-deck/single-deck.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   imports: [
@@ -51,10 +52,16 @@ import { ProfileComponent } from './profile/profile.component';
     CardDescriptionPipe,
     AccountComponent,
     SingleDeckComponent,
-    ProfileComponent
+    ProfileComponent,
+    DeckDialogComponent,
+    ConfirmDialogComponent
   ],
   providers: [
     AngularFireAuth,
+  ],
+  entryComponents: [
+    DeckDialogComponent,
+    ConfirmDialogComponent
   ],
   exports: [
     HomeComponent,

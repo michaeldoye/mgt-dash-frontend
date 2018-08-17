@@ -4,12 +4,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { routeAnimation } from '../../route.animation';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'mtg-dash-single-deck',
   templateUrl: './single-deck.component.html',
-  styleUrls: ['./single-deck.component.scss']
+  styleUrls: ['./single-deck.component.scss'],
+  host: {'[@routeAnimation]': 'true'},
+  animations: [routeAnimation]
 })
 export class SingleDeckComponent implements OnInit {
 

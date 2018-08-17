@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { flyInOut } from '../../route.animation';
+import { flyInOut, slideAnimation } from '../../route.animation';
 import { Observable } from 'rxjs';
 import { ApolloQueryResult } from 'apollo-client';
 import { BackendService } from '../../core/utils/backend.service';
@@ -11,7 +11,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
   selector: 'ngxtemplate-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  animations: [flyInOut]
+  animations: [flyInOut, slideAnimation]
 })
 export class DashboardComponent implements OnInit {
 

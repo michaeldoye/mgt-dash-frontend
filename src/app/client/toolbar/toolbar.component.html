@@ -25,10 +25,6 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">    
-    <button mat-menu-item routerLink="login">
-      <mat-icon>exit_to_app</mat-icon>
-      <span>Logout</span>
-    </button>
     <button mat-menu-item routerLink="/">
       <mat-icon>home</mat-icon>
       <span>Home</span>
@@ -37,6 +33,11 @@
       <mat-icon>person</mat-icon>
       <span>My Account</span>
     </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="login">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>    
     <mat-divider></mat-divider>
     <button mat-menu-item>
       <mat-slide-toggle 

@@ -37,7 +37,7 @@
 
 <mat-menu #deckMenu="matMenu">
   <ng-container *ngIf="(userDoc$ | async) as userDetails else noDecks">
-    <button mat-menu-item disableRipple>
+    <button mat-menu-item disableRipple (click)="createDeck(card)">
       <mat-icon>create</mat-icon>
       <span>Create New</span>
     </button>

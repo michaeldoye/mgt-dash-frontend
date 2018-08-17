@@ -4,12 +4,15 @@ import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { BackendService } from '../../core/utils/backend.service';
 import { ButtonOpts } from 'mat-progress-buttons';
+import { routeAnimation } from '../../route.animation';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'mtg-dash-explore-set',
   templateUrl: './explore-set.component.html',
-  styleUrls: ['./explore-set.component.scss']
+  styleUrls: ['./explore-set.component.scss'],
+  host: {'[@routeAnimation]': 'true'},
+  animations: [routeAnimation]
 })
 export class ExploreSetComponent implements OnInit {
 
