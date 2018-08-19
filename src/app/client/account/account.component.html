@@ -36,11 +36,11 @@
                 <small>{{ deck.name }}</small> | <small>{{ deck.id }}</small>
               </mat-card-content>
               <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
-                <button mat-icon-button [routerLink]="['deck', deck.id]" matTooltip="View deck">
-                  <mat-icon color="primary">pageview</mat-icon>
+                <button mat-icon-button [routerLink]="['deck', deck.id, deck.name]" matTooltip="View deck">
+                  <mat-icon color="primary">launch</mat-icon>
                 </button>
                 <button mat-icon-button matTooltip="Delete deck" (click)="deleteDeck(deck.id, deck.name)">
-                  <mat-icon color="warn">delete</mat-icon>
+                  <mat-icon color="warn">delete_forever</mat-icon>
                 </button>                
               </mat-card-actions>
             </mat-card>

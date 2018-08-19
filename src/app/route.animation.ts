@@ -1,4 +1,4 @@
-import { transition, style, trigger, animate, state, group, query } from "@angular/animations";
+import { transition, style, trigger, animate, state, group, query } from '@angular/animations';
 
 
 export let slideAnimation = trigger('slideAnimation', [
@@ -9,7 +9,6 @@ export let slideAnimation = trigger('slideAnimation', [
     }),
     group([
       animate('300ms ease-in-out', style({
-        //transform: 'translate3d(0, 0, 0)',
         transform: 'translate3d(0, 0, 0)',
         opacity: 1,
       })),
@@ -38,7 +37,7 @@ export let fadeInAnimation = trigger('fadeInAnimation', [
     style({
       opacity: 0,
     }),
-    animate('400ms 150ms ease-in-out', style({
+    animate('300ms 100ms ease-in-out', style({
       opacity: 1,
     }))
   ]),
@@ -53,7 +52,7 @@ export let flyInOut = trigger('flyInOut', [
   transition('* => void', [
     animate(300, style({transform: 'translateY(100%)'}))
   ])
-])
+]);
 
 export let fadeInOut = trigger('fadeInOut', [
   state('in', style({opacity: 0})),
@@ -69,7 +68,7 @@ export let fadeInOut = trigger('fadeInOut', [
         animate('400ms ease-in-out', style({'opacity': '1'}))
     ])
   ])
-])
+]);
 
 export let spinInOut = trigger('spinInOut', [
   state('in', style({transform: 'rotate(0)', opacity: '1'})),
@@ -80,10 +79,10 @@ export let spinInOut = trigger('spinInOut', [
   transition(':leave', [
     animate('150ms ease', style({transform: 'rotate(180deg)', opacity: '0'}))
   ]),
-])
+]);
 
 export let preventInitial = trigger('preventInitial', [
   transition(':enter', [
     query(':enter', [], {optional: true})
   ]),
-])
+]);

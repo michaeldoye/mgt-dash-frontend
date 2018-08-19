@@ -1,1 +1,32 @@
-<router-outlet></router-outlet>
+<div class="profile-wrapper" fxLayout="row" fxLayoutGap="25px">
+  <div class="profile-nav" fxFlex="25%">
+    <h2>Your Account</h2>
+    <mat-card>
+      <div class="nav-list">
+        <div class="list-item">
+          <mat-icon color="primary">person</mat-icon>
+          <span>Profile</span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="list-item">
+          <mat-icon color="primary">person</mat-icon>
+          <span>Decks</span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="list-item">
+          <mat-icon color="primary">person</mat-icon>
+          <span>Item 1</span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="list-item">
+          <mat-icon color="primary">person</mat-icon>
+          <span>Item 1</span>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+  <div class="profile-outlet" fxFlex="72%">
+    <router-outlet></router-outlet>
+  </div>
+</div>

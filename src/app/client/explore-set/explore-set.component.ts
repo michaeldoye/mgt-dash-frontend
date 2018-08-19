@@ -1,26 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { BackendService } from '../../core/utils/backend.service';
 import { ButtonOpts } from 'mat-progress-buttons';
-import { routeAnimation } from '../../route.animation';
+import { routeAnimation, fadeInAnimation } from '../../route.animation';
+import { Observable } from 'rxjs';
+import { FirestoreService } from '../../core/utils/firestore.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'mtg-dash-explore-set',
   templateUrl: './explore-set.component.html',
   styleUrls: ['./explore-set.component.scss'],
-  host: {'[@routeAnimation]': 'true'},
-  animations: [routeAnimation]
+  animations: [routeAnimation, fadeInAnimation]
 })
 export class ExploreSetComponent implements OnInit {
+  @HostBinding('@routeAnimation') routeAnimation = true;
 
   public cards$ = new BehaviorSubject(null);
   public query = '';
   public pageSize = 21;
   public page = 1;
   public selectedSet: string;
+  public selectedCards = [];
+  public decks$: Observable<any>;
 
   public sortOptions = [
     {name: 'Name', value: 'name'},
@@ -45,6 +50,8 @@ export class ExploreSetComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private api: BackendService,
+    private fs: FirestoreService,
+    private auth: AngularFireAuth
   ) { }
 
   ngOnInit() {
@@ -54,6 +61,11 @@ export class ExploreSetComponent implements OnInit {
         return this.api.getCardsBySetName(params.get('set'), this.pageSize, this.page);
       })
     ).subscribe(data => this.cards$.next(data.data.cardsBySet));
+    this.auth.user.subscribe(user => {
+      if (user) {
+        this.decks$ = this.fs.userDecks(user.uid);
+      }
+    });
   }
 
   loadMore() {
@@ -76,6 +88,20 @@ export class ExploreSetComponent implements OnInit {
       this.btnOpts.disabled = true;
     }
     this.btnOpts.active = false;
+  }
+
+  addToSelectedCards(card: string) {
+    if (this.selectedCards.includes(card)) {
+      this.selectedCards = this.selectedCards.filter(c => c !== card);
+    } else {
+      this.selectedCards.push(card);
+    }
+  }
+
+  addSelectedCardsToDeck(deckId) {
+    this.fs.batchAddCards(deckId, this.selectedCards).then(() => {
+      this.selectedCards = [];
+    });
   }
 
 }

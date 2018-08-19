@@ -43,7 +43,7 @@ const routes: Routes = [
         component: AccountComponent
       },
       {
-        path: 'deck/:id',
+        path: 'deck/:id/:name',
         component: SingleDeckComponent
       }
     ]

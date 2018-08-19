@@ -1,10 +1,17 @@
 <ng-container *ngIf="(deck$ | async) as deck else loading">
+  <mat-toolbar>
+    <button mat-icon-button routerLink="/account">
+      <mat-icon>arrow_back</mat-icon>
+    </button> 
+    &nbsp;
+    <span> {{ deckName }} </span>
+  </mat-toolbar>
   <div
     class="card-container" 
     fxLayout="row wrap" 
     fxLayoutGap="10px">  
     <mtg-dash-single-card 
-      *ngFor="let card of deck" 
+      *ngFor="let card of deck"
       [card]="card" 
       fxFlex="32.5%">
     </mtg-dash-single-card>

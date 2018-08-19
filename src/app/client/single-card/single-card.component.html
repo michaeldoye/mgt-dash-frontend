@@ -1,7 +1,9 @@
 <mat-card 
-  [class.mat-elevation-z7]="isActive" 
+  [class.mat-elevation-z7]="isActive || selected"
+  [class.selected]="selected" 
   (mouseover)="isActive = true" 
-  (mouseout)="isActive = false">
+  (mouseout)="isActive = false"
+  (click)="selected = !selected">
 
   <mat-nav-list disableRipple>
     <mat-list-item>
@@ -31,7 +33,11 @@
   </button>
   <button mat-menu-item disableRipple>
     <mat-icon>share</mat-icon>
-    <span>Share This Card</span>
+    <span>Share Card</span>
+  </button>
+  <button mat-menu-item disableRipple *ngIf="card.canRemove" (click)="removeCard(card.id)">
+    <mat-icon color="warn">delete</mat-icon>
+    <span>Remove Card</span>
   </button>
 </mat-menu>
 
@@ -46,6 +52,7 @@
       mat-menu-item 
       disableRipple    
       *ngFor="let deck of userDetails"
+      [disabled]="deck.id === currentDeck"
       (click)="addToDeck(deck.id, card)">
       <mat-icon>folder</mat-icon>
       {{ deck.name }}

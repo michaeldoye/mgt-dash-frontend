@@ -25,4 +25,8 @@
     z-index: 99!important;
   }
 
+  mat-card.selected mat-nav-list {
+    background: rgba(0, 0, 0, 0.08);
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FirestoreService } from '../../core/utils/firestore.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { BehaviorSubject } from 'rxjs';
@@ -11,12 +11,13 @@ import { routeAnimation } from '../../route.animation';
   selector: 'mtg-dash-single-deck',
   templateUrl: './single-deck.component.html',
   styleUrls: ['./single-deck.component.scss'],
-  host: {'[@routeAnimation]': 'true'},
   animations: [routeAnimation]
 })
 export class SingleDeckComponent implements OnInit {
+  @HostBinding('@routeAnimation') routeAnimation = true;
 
   public deck$ = new BehaviorSubject(null);
+  public deckName: string;
 
   constructor(
     private fs: FirestoreService,
@@ -29,6 +30,8 @@ export class SingleDeckComponent implements OnInit {
       if (user) {
         this.route.paramMap.pipe(
           switchMap((params: ParamMap) => {
+            this.fs.setCurrentDeck(params.get('id'));
+            this.deckName = params.get('name');
             return this.fs.deckCards(user.uid, params.get('id'));
           })
         ).subscribe(data => this.deck$.next(data));

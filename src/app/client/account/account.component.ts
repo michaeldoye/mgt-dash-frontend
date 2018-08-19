@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
 import { FirestoreService } from '../../core/utils/firestore.service';
@@ -11,10 +11,10 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
   selector: 'mtg-dash-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
-  host: {'[@routeAnimation]': 'true'},
-  animations: [routeAnimation]
+  // animations: [routeAnimation]
 })
 export class AccountComponent implements OnInit {
+  // @HostBinding('@routeAnimation') routeAnimation = true;
 
   public userDoc$: Observable<any>;
   private uid: string;
@@ -35,13 +35,12 @@ export class AccountComponent implements OnInit {
   }
 
   deleteDeck(deckId: string, deckName: string) {
-    // use confirm dialog
     this.dialog.open(ConfirmDialogComponent, {data: {name: deckName}})
       .afterClosed().subscribe(result => {
         if (result) {
           this.fs.deleteDeck(this.uid, deckId, deckName);
         }
-      })
+      });
   }
 
 }

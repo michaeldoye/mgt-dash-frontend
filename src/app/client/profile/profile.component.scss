@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  max-width: 1300px;
+  margin: 0 auto;
+  margin-top: 90px;
+
+  .profile-nav .list-item {
+    padding: 25px 25px;
+    transition: background .3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .profile-nav mat-icon {
+    vertical-align: bottom;
+    margin-right: 15px;
+  }
+
+  .profile-nav mat-card.mat-card {
+    padding: 0px;
+    border-radius: 6px;
+  }
+
+  .profile-nav .list-item:hover {
+    background: rgba(155,155,155,0.2);
+  }
+}
