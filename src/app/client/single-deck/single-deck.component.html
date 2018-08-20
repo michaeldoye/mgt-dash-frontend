@@ -1,6 +1,6 @@
 <ng-container *ngIf="(deck$ | async) as deck else loading">
   <mat-toolbar>
-    <button mat-icon-button routerLink="/account">
+    <button mat-icon-button routerLink="/account/decks">
       <mat-icon>arrow_back</mat-icon>
     </button> 
     &nbsp;
@@ -13,7 +13,7 @@
     <mtg-dash-single-card 
       *ngFor="let card of deck"
       [card]="card" 
-      fxFlex="32.5%">
+      fxFlex="31.6%">
     </mtg-dash-single-card>
   </div>  
 </ng-container>

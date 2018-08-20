@@ -32,6 +32,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class DeckDialogComponent {
 
+  deckName = '';
+
   constructor(
     public dialogRef: MatDialogRef<DeckDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public card: any

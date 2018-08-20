@@ -4,7 +4,7 @@
     <mat-icon [@spinInOut]="'in'" *ngIf="sidenav.isOpen">close</mat-icon>
   </button>
 
-  <span [style.cursor]="'pointer'" routerLink="home">{{ appTitle }}</span>
+  <span class="app-title" routerLink="home">{{ appTitle }}</span>
 
   <span fxFlex></span>
 
@@ -12,7 +12,6 @@
     <span class="user-name">
       {{ user?.displayName || user?.email }}
     </span>
-  
     <span>
       <img 
         class="avatar" 

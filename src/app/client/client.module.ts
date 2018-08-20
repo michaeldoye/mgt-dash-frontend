@@ -25,6 +25,7 @@ import { SingleDeckComponent } from './single-deck/single-deck.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { DeckDialogComponent } from './add-to-deck-dialog/add-to-deck-dialog.component';
+import { UserDecksComponent } from './user-decks/user-decks.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { DeckDialogComponent } from './add-to-deck-dialog/add-to-deck-dialog.com
     SingleDeckComponent,
     ProfileComponent,
     DeckDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    UserDecksComponent
   ],
   providers: [
     AngularFireAuth,

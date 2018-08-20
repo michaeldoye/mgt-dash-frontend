@@ -8,6 +8,7 @@ import { DashboardComponent } from './client/dashboard/dashboard.component';
 import { AccountComponent } from './client/account/account.component';
 import { SingleDeckComponent } from './client/single-deck/single-deck.component';
 import { ProfileComponent } from './client/profile/profile.component';
+import { UserDecksComponent } from './client/user-decks/user-decks.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'deck/:id/:name',
         component: SingleDeckComponent
+      },
+      {
+        path: 'decks',
+        component: UserDecksComponent
       }
     ]
   },
