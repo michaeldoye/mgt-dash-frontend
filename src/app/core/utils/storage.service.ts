@@ -25,8 +25,8 @@ export class StorageService {
   }
 
   clearAll() {
-    try{
-      localStorage.clear();      
+    try {
+      localStorage.clear();
     } catch (e) {
       console.error('Error clearing data from localStorage', e);
     }

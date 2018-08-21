@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { ThemeService } from '../../core/utils/theme.service';
 import { SidenavService } from '../sidenav/sidenav.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { spinInOut, preventInitial } from '../../route.animation';
+import { spinInOut, preventInitial } from '../../../route.animation';
+import { ThemeService } from '../../../core/utils/theme.service';
 
 @Component({
   // tslint:disable-next-line:component-selector

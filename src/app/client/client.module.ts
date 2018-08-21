@@ -7,25 +7,25 @@ import { MaterialModule } from '../material.module';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SatPopoverModule } from '@ncstate/sat-popover';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { RoutingModule } from '../app.routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { CardSetsComponent } from './card-sets/card-sets.component';
-import { FilterComponent } from './filter/filter.component';
-import { ExploreSetComponent } from './explore-set/explore-set.component';
 import { SearchPipe } from '../core/utils/search.pipe';
-import { SingleCardComponent } from './single-card/single-card.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatProgressButtons } from 'mat-progress-buttons';
 import { CardDescriptionPipe } from '../core/utils/card-description.pipe';
 import { NguCarouselModule } from '@ngu/carousel';
-import { AccountComponent } from './account/account.component';
-import { SingleDeckComponent } from './single-deck/single-deck.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { DeckDialogComponent } from './add-to-deck-dialog/add-to-deck-dialog.component';
-import { UserDecksComponent } from './user-decks/user-decks.component';
+import { AccountComponent } from './profile/account/account.component';
+import { UserDecksComponent } from './profile/user-decks/user-decks.component';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
+import { ExploreSetComponent } from './home/explore-set/explore-set.component';
+import { SidenavComponent } from './shared/sidenav/sidenav.component';
+import { ToolbarComponent } from './shared/toolbar/toolbar.component';
+import { FilterComponent } from './shared/filter/filter.component';
+import { DeckDialogComponent } from './shared/add-to-deck-dialog/add-to-deck-dialog.component';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { SingleCardComponent } from './shared/single-card/single-card.component';
+import { CardSetsComponent } from './shared/card-sets/card-sets.component';
+import { SingleDeckComponent } from './shared/single-deck/single-deck.component';
 
 @NgModule({
   imports: [

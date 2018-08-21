@@ -5,7 +5,8 @@ import { map } from 'rxjs/operators';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { LoadingService } from './loading.service';
 import { Router } from '@angular/router';
-import { DeckDialogComponent } from '../../client/add-to-deck-dialog/add-to-deck-dialog.component';
+import { AuthService } from '../auth/auth.service';
+import { DeckDialogComponent } from '../../client/shared/add-to-deck-dialog/add-to-deck-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,12 @@ export class FirestoreService {
     private sb: MatSnackBar,
     private loader: LoadingService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService
   ) { }
 
-  userDecks(uid: string): Observable<any> {
+  userDecks(): Observable<any> {
+    const uid = this.authService.isLoggedIn;
     this.userDocRef = this.afs.doc<any>(`users/${uid}`).collection('decks');
     return this.userDocRef.snapshotChanges().pipe(
       map(actions => {
@@ -54,7 +57,8 @@ export class FirestoreService {
       });
   }
 
-  deckCards(uid: string, deckId: string): Observable<any> {
+  deckCards(deckId: string): Observable<any> {
+    const uid = this.authService.isLoggedIn;
     const cards = this.afs.doc<any>(`users/${uid}`).collection('decks');
     return cards.doc(deckId).collection('cards').snapshotChanges().pipe(
       map(actions => {
@@ -67,7 +71,10 @@ export class FirestoreService {
     );
   }
 
-  createDeck(uid: string, card: any) {
+  createDeck(card: any) {
+    const uid = this.authService.isLoggedIn;
+    // TODO prompt for login when no uid
+    if (!uid) { return; }
     this.loader.isLoading.next(true);
     this.dialog.open(
       DeckDialogComponent,
@@ -81,7 +88,8 @@ export class FirestoreService {
     });
   }
 
-  deleteDeck(uid: string, deckId: string, deckName: string) {
+  deleteDeck(deckId: string, deckName: string) {
+    const uid = this.authService.isLoggedIn;
     this.loader.isLoading.next(true);
     return this.afs.doc<any>(`users/${uid}`)
       .collection('decks')

@@ -14,7 +14,12 @@
       <mat-list-item  routerLink="account" (click)="sidenav.close()">
         <mat-icon matListIcon>person</mat-icon>
         <a [style.outline]="'none'" matLine>My Account</a>
-      </mat-list-item>      
+      </mat-list-item>
+
+      <mat-list-item  routerLink="account/decks" (click)="sidenav.close()">
+        <mat-icon matListIcon>dashboard</mat-icon>
+        <a [style.outline]="'none'" matLine>My Decks</a>
+      </mat-list-item>   
       
       <mat-list-item routerLink="login" (click)="sidenav.close()">
         <mat-icon matListIcon>exit_to_app</mat-icon>
@@ -34,26 +39,6 @@
         </mat-slide-toggle>
       </mat-list-item>
     </mat-nav-list>
-    
-    <!-- <ng-container *ngIf="(decks$ | async) as decks">
-      <cdk-drop
-        *ngFor="let deck of (decks$ | async)" 
-        #parent
-        [connectedTo]="connectedChild"
-        (dropped)="drop($event)">
-          <div class="sidebar-deck">
-            {{ deck.name }}
-          </div>
-      </cdk-drop>
-    </ng-container> -->
-    <!-- <cdk-drop
-      #parent
-      [connectedTo]="connectedChild"
-      (dropped)="drop($event)">
-      <div class="sidebar-deck">
-        deck.name
-    </div>
-    </cdk-drop> -->
 
   </mat-sidenav>
   <mat-sidenav-content class="content">

@@ -1,10 +1,10 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
-import { FirestoreService } from '../../core/utils/firestore.service';
 import { MatDialog } from '@angular/material';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { routeAnimation } from '../../route.animation';
+import { routeAnimation } from '../../../route.animation';
+import { FirestoreService } from '../../../core/utils/firestore.service';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -26,19 +26,14 @@ export class UserDecksComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.auth.user.subscribe((user) => {
-      if (user) {
-        this.uid = user.uid;
-        this.userDoc$ = this.fs.userDecks(user.uid);
-      }
-    });
+    this.userDoc$ = this.fs.userDecks();
   }
 
   deleteDeck(deckId: string, deckName: string) {
     this.dialog.open(ConfirmDialogComponent, {data: {name: deckName}})
       .afterClosed().subscribe(result => {
         if (result) {
-          this.fs.deleteDeck(this.uid, deckId, deckName);
+          this.fs.deleteDeck(deckId, deckName);
         }
       });
   }

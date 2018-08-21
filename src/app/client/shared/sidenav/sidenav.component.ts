@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ThemeService } from '../../core/utils/theme.service';
 import { MatSidenav } from '@angular/material';
 import { SidenavService } from './sidenav.service';
+import { ThemeService } from '../../../core/utils/theme.service';
 
 @Component({
   // tslint:disable-next-line:component-selector

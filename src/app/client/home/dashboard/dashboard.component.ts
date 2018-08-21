@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { flyInOut, slideAnimation } from '../../route.animation';
 import { Observable } from 'rxjs';
 import { ApolloQueryResult } from 'apollo-client';
-import { BackendService } from '../../core/utils/backend.service';
 import { NguCarousel } from '@ngu/carousel';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { flyInOut, slideAnimation } from '../../../route.animation';
+import { BackendService } from '../../../core/utils/backend.service';
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   public latestSetCards$: Observable<ApolloQueryResult<any>>;
   public newsFeed$:  Observable<ApolloQueryResult<any>>;
 
-  constructor(private api: BackendService, public auth: AngularFireAuth) {}
+  constructor(private api: BackendService, public auth: AuthService) {}
 
   ngOnInit(): void {
     this.fetchSets(this.sortBy);
@@ -48,7 +48,8 @@ export class DashboardComponent implements OnInit {
   fetchSets(filter: string) {
     if (filter) {
       this.sets$ = this.api.getSets(filter);
-      this.latestSetCards$ = this.api.getCardsBySetName('m19', 20, 1);
+      // TODO: Get latest set
+      this.latestSetCards$ = this.api.getCardsBySetName('c18', 20, 1);
       this.newsFeed$ = this.api.getNewsFeed();
     }
   }

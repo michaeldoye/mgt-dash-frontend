@@ -2,12 +2,11 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { BackendService } from '../../core/utils/backend.service';
 import { ButtonOpts } from 'mat-progress-buttons';
-import { routeAnimation, fadeInAnimation } from '../../route.animation';
 import { Observable } from 'rxjs';
-import { FirestoreService } from '../../core/utils/firestore.service';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { routeAnimation, fadeInAnimation } from '../../../route.animation';
+import { BackendService } from '../../../core/utils/backend.service';
+import { FirestoreService } from '../../../core/utils/firestore.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -51,7 +50,6 @@ export class ExploreSetComponent implements OnInit {
     private route: ActivatedRoute,
     private api: BackendService,
     private fs: FirestoreService,
-    private auth: AngularFireAuth
   ) { }
 
   ngOnInit() {
@@ -61,11 +59,7 @@ export class ExploreSetComponent implements OnInit {
         return this.api.getCardsBySetName(params.get('set'), this.pageSize, this.page);
       })
     ).subscribe(data => this.cards$.next(data.data.cardsBySet));
-    this.auth.user.subscribe(user => {
-      if (user) {
-        this.decks$ = this.fs.userDecks(user.uid);
-      }
-    });
+    this.decks$ = this.fs.userDecks();
   }
 
   loadMore() {

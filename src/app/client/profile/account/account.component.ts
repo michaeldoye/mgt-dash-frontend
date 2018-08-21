@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { routeAnimation } from '../../route.animation';
+import { routeAnimation } from '../../../route.animation';
 
 @Component({
   // tslint:disable-next-line:component-selector

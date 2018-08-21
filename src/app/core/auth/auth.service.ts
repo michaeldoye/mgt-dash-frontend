@@ -20,6 +20,16 @@ export class AuthService {
     private afs: AngularFirestore
   ) { }
 
+  public currentUser: string;
+
+  public setCurrentUser(uid: string): void {
+    this.currentUser = uid;
+  }
+
+  public get isLoggedIn(): string | null {
+    return this.currentUser || null;
+  }
+
   public emailSignUp(email: string, password: string): Promise<any> {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => this.handleNewUser(user))

@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Inject, HostBinding } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FirestoreService } from '../../core/utils/firestore.service';
-import { slideAnimation } from '../../route.animation';
+import { slideAnimation } from '../../../route.animation';
+import { FirestoreService } from '../../../core/utils/firestore.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,22 +17,13 @@ export class SingleCardComponent implements OnInit {
   public isActive: boolean;
   public imgLoaded: boolean;
   public userDoc$: Observable<any>;
-  private uid: string;
   public currentDeck: string;
   public selected = false;
 
-  constructor(
-    public auth: AngularFireAuth,
-    private fs: FirestoreService
-  ) { }
+  constructor(private fs: FirestoreService) { }
 
   ngOnInit() {
-    this.auth.user.subscribe((user) => {
-      if (user) {
-        this.uid = user.uid;
-        this.userDoc$ = this.fs.userDecks(user.uid);
-      }
-    });
+    this.userDoc$ = this.fs.userDecks() || null;
     this.currentDeck = this.fs.currentDeck;
   }
 
@@ -42,7 +32,7 @@ export class SingleCardComponent implements OnInit {
   }
 
   createDeck(card: any) {
-    this.fs.createDeck(this.uid, card);
+    this.fs.createDeck(card);
   }
 
   removeCard(cardId: string) {
