@@ -21,7 +21,7 @@ export class WorkerService {
 
   private promptUser(e): void {
     const snackBarRef = this.snackBar.open(
-      'A new version is available',
+      'A new version of MTGdash is available',
       'Refresh',
       {horizontalPosition: 'left'}
     );

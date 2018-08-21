@@ -20,9 +20,9 @@ export class AuthService {
     private afs: AngularFirestore
   ) { }
 
-  public currentUser: string;
+  public currentUser: string|null;
 
-  public setCurrentUser(uid: string): void {
+  public setCurrentUser(uid: string|null): void {
     this.currentUser = uid;
   }
 

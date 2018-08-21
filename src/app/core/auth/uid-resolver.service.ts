@@ -24,6 +24,7 @@ export class UserIdResolver implements Resolve<boolean> {
         this.authService.setCurrentUser(user.uid);
         return true;
       }
+      this.authService.setCurrentUser(null);
       return false;
     }), take(1));
     // return true;

@@ -3,7 +3,7 @@
 </mat-toolbar>
 <ng-container *ngIf="(userDoc$ | async) as userDetails else loading">
 
-  <div *ngIf="!userDetails else decks" fxLayout="column" fxLayoutAlign="center center">
+  <div *ngIf="!userDetails.length else decks" fxLayout="column" fxLayoutAlign="center center">
     <h3>You have no decks yet.</h3>
     <button mat-stroked-button color="primary">
       <mat-icon>create_new_folder</mat-icon>

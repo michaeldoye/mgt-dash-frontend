@@ -5,6 +5,7 @@ import { NguCarousel } from '@ngu/carousel';
 import { flyInOut, slideAnimation } from '../../../route.animation';
 import { BackendService } from '../../../core/utils/backend.service';
 import { AuthService } from '../../../core/auth/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
   public latestSetCards$: Observable<ApolloQueryResult<any>>;
   public newsFeed$:  Observable<ApolloQueryResult<any>>;
 
-  constructor(private api: BackendService, public auth: AuthService) {}
+  constructor(private api: BackendService, public auth: AngularFireAuth) {}
 
   ngOnInit(): void {
     this.fetchSets(this.sortBy);
