@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { ApolloQueryResult } from 'apollo-client';
 import gql from 'graphql-tag';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,7 @@ export class BackendService {
             types
             subtypes
             rarity
+            isSelected
             rulings {
               date
               text
@@ -59,7 +61,11 @@ export class BackendService {
         }
       }
     `;
-    return this.apollo.watchQuery({query: cardsBySetQ}).valueChanges;
+    return this.apollo.watchQuery({query: cardsBySetQ}).valueChanges
+      .pipe(map((data) => {
+        const clonedObj = JSON.stringify(data);
+        return JSON.parse(clonedObj);
+      }));
   }
 
   getNewsFeed(): Observable<ApolloQueryResult<any>> {

@@ -18,7 +18,6 @@ export class SingleCardComponent implements OnInit {
   public imgLoaded: boolean;
   public userDoc$: Observable<any>;
   public currentDeck: string;
-  public selected = false;
 
   @HostListener('mouseover')
   markActive() {

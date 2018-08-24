@@ -16,4 +16,12 @@
   span.set-desc {
     font-size: 15px;
   }
+
+  mtg-dash-single-card.selected {
+    border: 1px solid orange;
+  }
+
+  mtg-dash-single-card {
+    border: 1px solid transparent;
+  }
 }

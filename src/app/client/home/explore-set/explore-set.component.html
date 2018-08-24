@@ -34,8 +34,8 @@
     fxLayoutGap="10px">
     <mtg-dash-single-card 
       *ngFor="let card of cards?.cardData | serchPipe: query;"
-      (click)="addToSelectedCards(card);isSelected = !isSelected"
-      [class.selected]="isSelected" 
+      (click)="addToSelectedCards(card);card.isSelected = !card.isSelected"
+      [class.selected]="card.isSelected" 
       [card]="card" 
       fxFlex="32.5%">
     </mtg-dash-single-card>

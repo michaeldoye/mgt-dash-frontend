@@ -85,7 +85,7 @@ export class ExploreSetComponent implements OnInit {
     this.btnOpts.active = false;
   }
 
-  addToSelectedCards(card: string) {
+  addToSelectedCards(card: any) {
     if (this.selectedCards.includes(card)) {
       this.selectedCards = this.selectedCards.filter(c => c !== card);
     } else {
@@ -95,6 +95,7 @@ export class ExploreSetComponent implements OnInit {
 
   addSelectedCardsToDeck(deckId) {
     this.fs.batchAddCards(deckId, this.selectedCards).then(() => {
+      this.selectedCards.map((card) => card.isSelected = false);
       this.selectedCards = [];
     });
   }
