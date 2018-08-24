@@ -5,7 +5,10 @@
       <img matListAvatar *ngIf="!imgLoaded" class="card-img" [src]="'assets/placeholder.png'" />
       <img matListAvatar [hidden]="!imgLoaded" (load)="imgLoaded = true" class="card-img" [src]="card.imageUrl" />
       <a class="title" matLine href="javascript:;">{{ card?.name }}</a>
-      <button mat-icon-button [matMenuTriggerFor]="cardMenu">
+      <button mat-icon-button [matMenuTriggerFor]="cardMenu" [@fadeInAnimation] *ngIf="card.isSelected">
+        <mat-icon>check_box</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="cardMenu" [@fadeInAnimation] *ngIf="!card.isSelected">
         <mat-icon>more_vert</mat-icon>
       </button>
       <p matLine>

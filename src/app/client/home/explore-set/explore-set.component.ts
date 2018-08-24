@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, HostListener, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -17,6 +17,7 @@ import { FirestoreService } from '../../../core/utils/firestore.service';
 })
 export class ExploreSetComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
+  @ViewChild('container', { read: ViewContainerRef}) container;
 
   public cards$ = new BehaviorSubject(null);
   public query = '';
@@ -26,6 +27,7 @@ export class ExploreSetComponent implements OnInit {
   public selectedCards = [];
   public isSelected: boolean;
   public decks$: Observable<any>;
+  public shouldFixBar = false;
 
   public sortOptions = [
     {name: 'Name', value: 'name'},
@@ -46,6 +48,17 @@ export class ExploreSetComponent implements OnInit {
     disabled: false,
     mode: 'indeterminate'
   };
+
+  @HostListener('scroll', ['$event'])
+  setFixedBar(e) {
+    const top = document.body.scrollTop;
+    console.log(e);
+    if (top > 64) {
+      this.shouldFixBar = true;
+    } else if (top < 64) {
+      this.shouldFixBar = false;
+    }
+  }
 
   constructor(
     private route: ActivatedRoute,

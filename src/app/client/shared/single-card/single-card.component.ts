@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
-import { slideAnimation } from '../../../route.animation';
+import { slideAnimation, fadeInAnimation } from '../../../route.animation';
 import { FirestoreService } from '../../../core/utils/firestore.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { FirestoreService } from '../../../core/utils/firestore.service';
   selector: 'mtg-dash-single-card',
   templateUrl: './single-card.component.html',
   styleUrls: ['./single-card.component.scss'],
-  animations: [slideAnimation]
+  animations: [slideAnimation, fadeInAnimation]
 })
 export class SingleCardComponent implements OnInit {
   @HostBinding('@slideAnimation') slideAnimation = true;

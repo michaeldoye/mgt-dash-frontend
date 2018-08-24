@@ -37,7 +37,7 @@ export let fadeInAnimation = trigger('fadeInAnimation', [
     style({
       opacity: 0,
     }),
-    animate('300ms 100ms ease-in-out', style({
+    animate('250ms 100ms ease-in-out', style({
       opacity: 1,
     }))
   ]),
