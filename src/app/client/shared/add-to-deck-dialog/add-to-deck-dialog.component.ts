@@ -18,12 +18,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
         This is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+    <br>
+    <mat-checkbox [(ngModel)]="isPublic">Public Deck</mat-checkbox>
     <p><em>{{card.name}}</em> will be added to your deck</p>
   </div>
 
   <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
     <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
-    <button mat-raised-button color="primary" [disabled]="!deckName" [mat-dialog-close]="deckName">Create</button>
+    <button mat-raised-button color="primary" [disabled]="!deckName" [mat-dialog-close]="{name:deckName, public: isPublic}">Create</button>
   </div>
   `,
   styles: [`
@@ -33,6 +35,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class DeckDialogComponent {
 
   deckName = '';
+  isPublic = true;
 
   constructor(
     public dialogRef: MatDialogRef<DeckDialogComponent>,

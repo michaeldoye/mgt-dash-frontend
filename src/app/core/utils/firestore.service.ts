@@ -71,19 +71,28 @@ export class FirestoreService {
     );
   }
 
-  createDeck(card: any) {
+  createDeck(card: any, multiple?: boolean) {
     const uid = this.authService.isLoggedIn;
-    // TODO prompt for login when no uid
+    // TODO: prompt for login when no uid
+    // TODO: add option for public decks
     if (!uid) { return; }
     this.loader.isLoading.next(true);
     this.dialog.open(
       DeckDialogComponent,
-      {width: '450px', data: card}).afterClosed().subscribe((deckName) => {
-      if (deckName) {
+      {width: '450px', data: card}).afterClosed().subscribe((deck) => {
+      if (deck) {
         this.afs.doc<any>(`users/${uid}`)
           .collection('decks')
-          .add({name: deckName})
-          .then(doc => this.addToDeck(doc.id, card));
+          .add({name: deck.name, dateAdded: new Date(), public: deck.public})
+          .then(doc => {
+            if (multiple) {
+              this.batchAddCards(doc.id, card);
+            } else {
+              this.addToDeck(doc.id, card);
+            }
+          });
+      } else {
+        this.loader.isLoading.next(false);
       }
     });
   }

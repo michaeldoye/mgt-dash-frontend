@@ -24,6 +24,7 @@ export class ExploreSetComponent implements OnInit {
   public page = 1;
   public selectedSet: string;
   public selectedCards = [];
+  public isSelected: boolean;
   public decks$: Observable<any>;
 
   public sortOptions = [
@@ -96,6 +97,10 @@ export class ExploreSetComponent implements OnInit {
     this.fs.batchAddCards(deckId, this.selectedCards).then(() => {
       this.selectedCards = [];
     });
+  }
+
+  createDeck(card: any) {
+    this.fs.createDeck(this.selectedCards, true);
   }
 
 }

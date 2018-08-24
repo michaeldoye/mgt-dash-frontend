@@ -5,7 +5,7 @@
 
   <div *ngIf="!userDetails.length else decks" fxLayout="column" fxLayoutAlign="center center">
     <h3>You have no decks yet.</h3>
-    <button mat-stroked-button color="primary">
+    <button mat-stroked-button color="primary" routerLink="/home">
       <mat-icon>create_new_folder</mat-icon>
       Create New
     </button>
@@ -16,7 +16,9 @@
       <mat-card fxFlex="31.5%" *ngFor="let deck of userDetails">
         <img mat-card-image src="../assets/7GEb8Qx.jpg">
         <mat-card-content>
-          <small>{{ deck.name }}</small> | <small>{{ deck.id }}</small>
+          <small>{{ deck.name }}</small> | <small>{{ deck.dateAdded.toDate() | date: 'short' }}</small>
+          <br>
+          <small>{{ deck.public ? 'Public Deck' : 'Private Deck' }}</small>
         </mat-card-content>
         <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
           <button mat-icon-button [routerLink]="['/account/deck', deck.id, deck.name]" matTooltip="View deck">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 import { slideAnimation } from '../../../route.animation';
 import { FirestoreService } from '../../../core/utils/firestore.service';
@@ -19,6 +19,16 @@ export class SingleCardComponent implements OnInit {
   public userDoc$: Observable<any>;
   public currentDeck: string;
   public selected = false;
+
+  @HostListener('mouseover')
+  markActive() {
+    this.isActive = true;
+  }
+
+  @HostListener('mouseout')
+  markInactive() {
+    this.isActive = false;
+  }
 
   constructor(private fs: FirestoreService) { }
 
