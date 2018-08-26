@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { DragDropModule } from '@angular/cdk-experimental/drag-drop';
 import {
   MatCheckboxModule,
   MatDialogModule,
@@ -60,7 +59,6 @@ import {
     MatSelectModule,
     MatTabsModule,
     MatSlideToggleModule,
-    DragDropModule
   ],
   exports: [
     MatToolbarModule,
@@ -90,7 +88,6 @@ import {
     MatSelectModule,
     MatTabsModule,
     MatSlideToggleModule,
-    DragDropModule
   ],
   declarations: []
 })

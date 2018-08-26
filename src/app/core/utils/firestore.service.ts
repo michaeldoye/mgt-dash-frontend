@@ -42,6 +42,7 @@ export class FirestoreService {
   addToDeck(deckId: string, card: any) {
     const extesnibleCard = Object.assign({}, card);
     extesnibleCard.canRemove = true;
+    extesnibleCard.isSelected = false;
     this.loader.isLoading.next(true);
     this.userDocRef.doc(deckId)
       .collection('cards')
@@ -125,6 +126,7 @@ export class FirestoreService {
     cards.forEach(card => {
       const extCard = Object.assign({}, card);
       extCard.canRemove = true;
+      extCard.isSelected = false;
       const deckCards = deck.collection('cards');
       deckCards.add(extCard);
     });

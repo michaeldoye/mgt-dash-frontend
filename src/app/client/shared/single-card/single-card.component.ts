@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Output, HostBinding, HostListener, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { slideAnimation, fadeInAnimation } from '../../../route.animation';
 import { FirestoreService } from '../../../core/utils/firestore.service';
@@ -14,6 +14,8 @@ export class SingleCardComponent implements OnInit {
   @HostBinding('@slideAnimation') slideAnimation = true;
 
   @Input() card: any;
+  @Output() cardClick = new EventEmitter();
+
   public isActive: boolean;
   public imgLoaded: boolean;
   public userDoc$: Observable<any>;
@@ -46,5 +48,9 @@ export class SingleCardComponent implements OnInit {
 
   removeCard(cardId: string) {
     this.fs.removeCardFromDeck(this.fs.currentDeck, cardId);
+  }
+
+  setClicked() {
+    this.cardClick.emit();
   }
 }

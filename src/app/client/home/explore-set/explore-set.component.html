@@ -1,41 +1,43 @@
-<ng-container *ngIf="(cards$ | async) as cards else loading" #container>
-  
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <h1>
-        <button mat-icon-button routerLink="/home">
-          <mat-icon>arrow_back</mat-icon>
-        </button> 
-        &nbsp; 
-        {{ cards?.setData.name }}
-      </h1>
-      <span fxFlex></span>
-      <mtg-dash-filter [sortOptions]="sortOptions" (onSearchChange)="query = $event"></mtg-dash-filter>
-    </mat-toolbar-row>
-    <mat-toolbar-row *ngIf="selectedCards.length === 0" [@fadeInAnimation]>
-      <span class="set-desc"><small>Type: {{ cards?.setData.type }}</small></span>
-      <span fxFlex></span>
-      <span class="set-desc"><small>Released: {{ cards?.setData.releaseDate }}</small></span>
-      <span fxFlex></span>
-      <span class="set-desc"><small>Block/Code: {{ cards?.setData.block ? cards?.setData.block : cards?.setData.code }}</small></span>
-    </mat-toolbar-row>
-    <mat-toolbar-row *ngIf="selectedCards.length > 0" [@fadeInAnimation] [class.fixed]="shouldFixBar">
-      <span>{{selectedCards.length}} card{{selectedCards.length > 1 ? 's' : ''}} selected</span>
-      <span fxFlex></span>
-      <button mat-icon-button matTooltip="Add to deck" [matMenuTriggerFor]="deckMenu">
-        <mat-icon [matBadge]="selectedCards.length">
-          create_new_folder
-        </mat-icon>
-      </button>
-    </mat-toolbar-row>
-  </mat-toolbar>
+<ng-container *ngIf="(cards$ | async) as cards else loading">
+  <div class="toolbar-wrapper" style="height: 128px">
+    <mat-toolbar [class.fixed]="fixedBar">
+      <mat-toolbar-row>
+        <h1>
+          <button mat-icon-button routerLink="/home">
+            <mat-icon>arrow_back</mat-icon>
+          </button> 
+          &nbsp; 
+          {{ cards?.setData.name }}
+        </h1>
+        <span fxFlex></span>
+        <mtg-dash-filter [sortOptions]="sortOptions" (onSearchChange)="query = $event"></mtg-dash-filter>
+      </mat-toolbar-row>
+      <mat-toolbar-row *ngIf="selectedCards.length === 0" [@fadeInAnimation]>
+        <span class="set-desc"><small>Type: {{ cards?.setData.type }}</small></span>
+        <span fxFlex></span>
+        <span class="set-desc"><small>Released: {{ cards?.setData.releaseDate }}</small></span>
+        <span fxFlex></span>
+        <span class="set-desc"><small>Block/Code: {{ cards?.setData.block ? cards?.setData.block : cards?.setData.code }}</small></span>
+      </mat-toolbar-row>
+      <mat-toolbar-row *ngIf="selectedCards.length > 0" [@fadeInAnimation]>
+        <span>{{selectedCards.length}} card{{selectedCards.length > 1 ? 's' : ''}} selected</span>
+        <span fxFlex></span>
+        <button mat-icon-button matTooltip="Add to deck" [matMenuTriggerFor]="deckMenu">
+          <mat-icon [matBadge]="selectedCards.length">
+            create_new_folder
+          </mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
 
   <div class="card-container" 
+    [class.fixed]="fixedBar"
     fxLayout="row wrap" 
     fxLayoutGap="10px">
     <mtg-dash-single-card 
       *ngFor="let card of cards?.cardData | serchPipe: query;"
-      (click)="addToSelectedCards(card);card.isSelected = !card.isSelected"
+      (cardClick)="addToSelectedCards(card);card.isSelected = !card.isSelected"
       [class.selected]="card.isSelected" 
       [card]="card" 
       fxFlex="32.5%">

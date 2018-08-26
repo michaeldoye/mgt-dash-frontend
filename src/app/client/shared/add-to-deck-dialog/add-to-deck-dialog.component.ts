@@ -18,8 +18,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
         This is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-    <br>
-    <mat-checkbox [(ngModel)]="isPublic">Public Deck</mat-checkbox>
+    <br />
+    <br />
+    <mat-checkbox matTooltip="Allow other users to see this deck" [(ngModel)]="isPublic">Public Deck</mat-checkbox>
     <p><em>{{card.name}}</em> will be added to your deck</p>
   </div>
 

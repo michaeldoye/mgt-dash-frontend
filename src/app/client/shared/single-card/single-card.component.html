@@ -4,14 +4,14 @@
     <mat-list-item>
       <img matListAvatar *ngIf="!imgLoaded" class="card-img" [src]="'assets/placeholder.png'" />
       <img matListAvatar [hidden]="!imgLoaded" (load)="imgLoaded = true" class="card-img" [src]="card.imageUrl" />
-      <a class="title" matLine href="javascript:;">{{ card?.name }}</a>
+      <a class="title" matLine href="javascript:;" (click)="setClicked()">{{ card?.name }}</a>
       <button mat-icon-button [matMenuTriggerFor]="cardMenu" [@fadeInAnimation] *ngIf="card.isSelected">
-        <mat-icon>check_box</mat-icon>
+        <mat-icon color="primary">check_box</mat-icon>
       </button>
       <button mat-icon-button [matMenuTriggerFor]="cardMenu" [@fadeInAnimation] *ngIf="!card.isSelected">
         <mat-icon>more_vert</mat-icon>
       </button>
-      <p matLine>
+      <p matLine (click)="setClicked()">
         <span>
           <i *ngIf="card?.rarity" [matTooltip]="card?.rarity" class="ss ss-ons ss-{{card?.rarity.toLowerCase()}}"></i>&nbsp;
           <i *ngFor="let color of card?.colorIdentity" class="ms ms-{{ color.toLowerCase() || 'c' }}"></i>&nbsp;
