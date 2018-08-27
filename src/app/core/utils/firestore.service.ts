@@ -44,7 +44,7 @@ export class FirestoreService {
     extesnibleCard.canRemove = true;
     extesnibleCard.isSelected = false;
     this.loader.isLoading.next(true);
-    this.userDocRef.doc(deckId)
+    return this.userDocRef.doc(deckId)
       .collection('cards')
       .add(extesnibleCard).then(() => {
         this.successSnackBar(card.name, deckId);
@@ -72,29 +72,33 @@ export class FirestoreService {
     );
   }
 
-  createDeck(card: any, multiple?: boolean) {
+  createDeck(card: any, multiple?: boolean): Promise<boolean> {
     const uid = this.authService.isLoggedIn;
     // TODO: prompt for login when no uid
     // TODO: add option for public decks
     if (!uid) { return; }
     this.loader.isLoading.next(true);
-    this.dialog.open(
-      DeckDialogComponent,
-      {width: '450px', data: card}).afterClosed().subscribe((deck) => {
-      if (deck) {
-        this.afs.doc<any>(`users/${uid}`)
-          .collection('decks')
-          .add({name: deck.name, dateAdded: new Date(), public: deck.public})
-          .then(doc => {
-            if (multiple) {
-              this.batchAddCards(doc.id, card);
-            } else {
-              this.addToDeck(doc.id, card);
-            }
-          });
-      } else {
-        this.loader.isLoading.next(false);
-      }
+    return new Promise((resolve) => {
+      this.dialog.open(DeckDialogComponent,  {width: '450px', data: card})
+      .afterClosed().subscribe((deck) => {
+        if (deck) {
+          this.afs.doc<any>(`users/${uid}`)
+            .collection('decks')
+            .add({name: deck.name, dateAdded: new Date(), public: deck.public})
+            .then(doc => {
+              if (multiple) {
+                this.batchAddCards(doc.id, card);
+                resolve(true);
+              } else {
+                this.addToDeck(doc.id, card);
+                resolve(true);
+              }
+            });
+        } else {
+          resolve(false);
+          this.loader.isLoading.next(false);
+        }
+      });
     });
   }
 

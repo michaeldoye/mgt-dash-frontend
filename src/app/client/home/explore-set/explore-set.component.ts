@@ -3,7 +3,6 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ButtonOpts } from 'mat-progress-buttons';
-import { Observable } from 'rxjs';
 import { routeAnimation, fadeInAnimation } from '../../../route.animation';
 import { BackendService } from '../../../core/utils/backend.service';
 import { FirestoreService } from '../../../core/utils/firestore.service';
@@ -25,7 +24,6 @@ export class ExploreSetComponent implements OnInit {
   public selectedSet: string;
   public selectedCards = [];
   public isSelected: boolean;
-  public decks$: Observable<any>;
   public fixedBar = false;
 
   public sortOptions = [
@@ -60,7 +58,7 @@ export class ExploreSetComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private api: BackendService,
-    private fs: FirestoreService,
+    private fs: FirestoreService
   ) { }
 
   ngOnInit() {
@@ -70,7 +68,6 @@ export class ExploreSetComponent implements OnInit {
         return this.api.getCardsBySetName(params.get('set'), this.pageSize, this.page);
       })
     ).subscribe(data => this.cards$.next(data.data.cardsBySet));
-    this.decks$ = this.fs.userDecks();
   }
 
   loadMore() {
@@ -103,15 +100,19 @@ export class ExploreSetComponent implements OnInit {
     }
   }
 
-  addSelectedCardsToDeck(deckId) {
+  addSelectedCardsToDeck(deckId: string) {
     this.fs.batchAddCards(deckId, this.selectedCards).then(() => {
       this.selectedCards.map((card) => card.isSelected = false);
       this.selectedCards = [];
     });
   }
 
-  createDeck(card: any) {
-    this.fs.createDeck(this.selectedCards, true);
+  createDeck() {
+    this.fs.createDeck(this.selectedCards, true).then((result) => {
+      if (!result) { return; }
+      this.selectedCards.map((card) => card.isSelected = false);
+      this.selectedCards = [];
+    });
   }
 
 }

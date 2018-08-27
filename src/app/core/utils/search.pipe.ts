@@ -15,7 +15,7 @@ export class SearchPipe implements PipeTransform {
     if (values && query) {
       return values.filter(value => {
         return JSON.stringify(value).toLowerCase().includes(query.toLowerCase());
-      }); 
+      });
     }
     return values;
   }

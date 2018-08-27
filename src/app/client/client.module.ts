@@ -26,6 +26,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
 import { SingleCardComponent } from './shared/single-card/single-card.component';
 import { CardSetsComponent } from './shared/card-sets/card-sets.component';
 import { SingleDeckComponent } from './shared/single-deck/single-deck.component';
+import { DeckMenuComponent } from './shared/deck-menu/deck-menu.component';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { SingleDeckComponent } from './shared/single-deck/single-deck.component'
     ProfileComponent,
     DeckDialogComponent,
     ConfirmDialogComponent,
-    UserDecksComponent
+    UserDecksComponent,
+    DeckMenuComponent
   ],
   providers: [
     AngularFireAuth,
