@@ -1,8 +1,8 @@
 <mat-card class="header-image" [ngStyle]="{'background-image': 'url(../assets/w4p8Zg1.jpg)'}">
-  <div class="overlay" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="25px">
+  <div class="header-image__overlay" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="25px">
     <h1>Welcome to MTGdash</h1>
     <span>Cards | Sets | Decks | News</span>
-    <div fxLayout="row" fxLayoutGap="10px" class="user-buttons" *ngIf="!(auth.user | async) as user else loggedIn">
+    <div fxLayout="row" fxLayoutGap="10px" class="header-image__user-buttons" *ngIf="!(auth.user | async) as user else loggedIn">
       <button mat-stroked-button color="primary" [routerLink]="['/login']">
         <mat-icon>input</mat-icon>
         LOGIN
@@ -13,7 +13,7 @@
       </button>
     </div>
     <ng-template #loggedIn>
-      <div fxLayout="row" class="user-buttons">
+      <div fxLayout="row" class="header-image__user-buttons">
         <button mat-stroked-button color="primary" [routerLink]="['/login']">
           <mat-icon>exit_to_app</mat-icon>
           Logout
@@ -35,26 +35,26 @@
     </mtg-dash-filter>
   </mat-toolbar> -->
 
-  <div class="top-grid" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" [@slideAnimation]>
-    <mat-card class="first-grid-card" fxFlex="40%" style="background: url(../assets/7GEb8Qx.jpg)">
-      <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+  <div class="grid-container__top-grid" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" [@slideAnimation]>
+    <mat-card fxFlex="40%" style="background: url(../assets/7GEb8Qx.jpg)">
+      <div fxLayout="row" fxLayoutAlign="center center">
         <h2>Cards</h2>
       </div>
     </mat-card>
     <div fxFlex="60%" fxLayout="column" fxLayoutGap="10px">
       <mat-card fxFlex="100%" style="background: url(../assets/iHshfmx.jpg)">
-        <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center center">
           <h2>Sets</h2>
         </div>
       </mat-card>
       <div fxFlex="100%" fxLayout="row" fxLayoutGap="10px">
         <mat-card fxFlex="50%" style="background: url(../assets/rHBrR2T.jpg)">
-          <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+          <div fxLayout="row" fxLayoutAlign="center center">
             <h2>Decks</h2>
           </div>
         </mat-card>
         <mat-card fxFlex="50%" style="background: url(../assets/VcwwHAc.jpg)" [routerLink]="['/account']">
-          <div class="overlay" fxLayout="row" fxLayoutAlign="center center">
+          <div fxLayout="row" fxLayoutAlign="center center">
             <h2>Account</h2>
           </div>
         </mat-card>
@@ -106,7 +106,6 @@
             <div class="overlay" fxLayout="column" fxLayoutAlign="center center">
               <p><i class="ss ss-5x ss-{{ card?.set.toLowerCase() }}"></i></p>
               <h4>{{ card.name }}</h4>
-              <!-- <span class="demo-2"> <small [innerHTML]="card?.text | slice:0:50 | cardDescription"></small> </span> -->
             </div>
         </mat-card>
       </ngu-item>

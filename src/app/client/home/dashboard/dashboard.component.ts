@@ -4,7 +4,6 @@ import { ApolloQueryResult } from 'apollo-client';
 import { NguCarousel } from '@ngu/carousel';
 import { flyInOut, slideAnimation } from '../../../route.animation';
 import { BackendService } from '../../../core/utils/backend.service';
-import { AuthService } from '../../../core/auth/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({

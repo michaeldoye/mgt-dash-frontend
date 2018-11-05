@@ -1,11 +1,63 @@
+@import "./../../../../assets/styles/shared";
+
 :host {
   margin-bottom: 75px;
   display: block;
+
+  .header-image {
+    margin-bottom: 35px;
+    margin-top: 64px;
+    min-height: 450px;
+    background-repeat: no-repeat!important;
+    background-size: 100%!important;
+    background-position: center top!important;
+
+    &__overlay {
+      @extend .overlay;
+    }
+
+    &__user-buttons {
+      mat-icon {
+        margin-right: 4px;
+        font-size: 125%;
+        position: relative;
+        top: 3px;
+      }
+
+    }
+  }
 
   .grid-container {
     margin: 20px;
     max-width: 1300px!important;
     margin: 0 auto;
+
+    &__top-grid {
+      padding: 5px;
+
+      mat-card {
+        > div {
+          @extend .overlay;
+        }
+
+        &:hover {
+          box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        &:not(&:nth-child(1)) {
+          min-height: 150px;
+          background-size: cover!important;
+          cursor: pointer;
+        }
+      }
+  
+      &:nth-child(1) {
+        height: 340px;
+        background-size: cover!important;
+        cursor: pointer;
+      }
+    }
+
   }
   
   .card-container .set{
@@ -15,110 +67,64 @@
 
   ngu-carousel {
     margin-top: 20px;
+
+    ngu-item mat-card {
+      text-align: center;
+      margin-right: 5px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      margin-left: 5px;
+      padding: 20px;
+      min-height: 200px;
+    }
+
+    .slider-card {
+      cursor: pointer;
+      background-repeat: no-repeat!important;
+      background-size: cover!important;
+      transition: all .3s ease-in-out;
+
+      > p {
+        margin-bottom: 0px;
+        margin-top: 10px;
+      }
+
+      &:hover {
+        box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+      }
+
+      &.single-card {
+        min-height: 350px!important;
+
+        &:hover {
+          box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+          transform: scale(1.05);
+          -webkit-transform: scale(1.05);
+          -moz-transform: scale(1.05);
+          -ms-transform: scale(1.05);
+          -o-transform: scale(1.05);
+        }
+      }
+    }
+
+    .rightRs, .leftRs {
+      top: -32px;
+      position: absolute;
+      transition: opacity .3s;
+    }
+  
+    .leftRs {
+      right: 35px;
+    }
+  
+    .rightRs {
+      right: 0;
+    }
   }
   
-  ngu-item mat-card {
-    text-align: center;
-    margin-right: 5px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 5px;
-    padding: 20px;
-    min-height: 200px;
-  }
-
-  .rightRs, .leftRs {
-    top: -32px;
-    position: absolute;
-    transition: opacity .3s;
-  }
-
-  .leftRs {
-    right: 35px;
-  }
-
-  .rightRs {
-    right: 0;
-  }
   
   .hidden {
     opacity: 0;
-  }
-
-  .top-grid {
-    padding: 5px;
-  }
-
-  .top-grid mat-card:hover {
-    box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-  }
-
-  .top-grid mat-card:not(.first-grid-card) {
-    min-height: 150px;
-    background-size: cover!important;
-    cursor: pointer;
-  }
-
-  .top-grid .first-grid-card {
-    height: 340px;
-    background-size: cover!important;
-    cursor: pointer;
-  }
-
-  .overlay {
-    background: rgba(0, 0, 0, 0.692);
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    color: white;
-    text-align: center;
-  }
-
-  .slider-card {
-    cursor: pointer;
-    background-repeat: no-repeat!important;
-    background-size: cover!important;
-    transition: all .3s ease-in-out;
-  }
-
-  mat-card.slider-card p {
-    margin-bottom: 0px;
-    margin-top: 10px;
-  }
-
-  .slider-card:hover {
-    box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-  }
-
-  .slider-card.single-card:hover {
-    box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    -o-transform: scale(1.05);
-  }
-
-  mat-card.header-image {
-    margin-bottom: 35px;
-    margin-top: 64px;
-    min-height: 450px;
-    background-repeat: no-repeat!important;
-    background-size: 100%!important;
-    background-position: center top!important;
-  }
-  
-  .user-buttons mat-icon {
-    margin-right: 4px;
-    font-size: 125%;
-    position: relative;
-    top: 3px;
-  } 
-  
-  mat-card.slider-card.single-card {
-    min-height: 350px!important;
   }
 
   mat-card.slider-card.single-card .overlay {
@@ -133,13 +139,7 @@
   mat-card.slider-card.single-card .overlay:hover {
     opacity: 0;
   }
-
-  mat-card.slider-card.single-card .demo-2 {
-    position: absolute;
-    bottom: 0px;
-    padding: 15px;
-  }
-
+  
   mat-card.slider-card.news-card img {
     margin-left: -20px;
     margin-top: -20px;
