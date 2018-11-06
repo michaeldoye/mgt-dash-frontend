@@ -11,6 +11,10 @@
     outline: none;
   }
 
+  .profile-nav .list-item:focus {
+    background: rgba(155,155,155,.2);
+  }
+
   .profile-nav mat-icon {
     vertical-align: bottom;
     margin-right: 15px;

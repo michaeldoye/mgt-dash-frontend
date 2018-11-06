@@ -1,3 +1,4 @@
+@import "./../../../../assets/styles/variables";
 @import "./../../../../assets/styles/shared";
 
 :host {
@@ -28,20 +29,18 @@
   }
 
   .grid-container {
-    margin: 20px;
-    max-width: 1300px!important;
+    width: $containerMaxWidth;
     margin: 0 auto;
 
     &__top-grid {
       padding: 5px;
-
       mat-card {
         > div {
           @extend .overlay;
         }
 
         &:hover {
-          box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+          box-shadow: $boxShadow-hover;
         }
 
         &:not(&:nth-child(1)) {
@@ -53,22 +52,17 @@
   
       &:nth-child(1) {
         height: 340px;
-        background-size: cover!important;
+        background-size: cover;
         cursor: pointer;
       }
     }
 
   }
-  
-  .card-container .set{
-    width: 100%;
-    margin-bottom: 10px;
-  }
 
-  ngu-carousel {
+  .card-carousel {
     margin-top: 20px;
 
-    ngu-item mat-card {
+    &__card {
       text-align: center;
       margin-right: 5px;
       margin-bottom: 10px;
@@ -76,9 +70,6 @@
       margin-left: 5px;
       padding: 20px;
       min-height: 200px;
-    }
-
-    .slider-card {
       cursor: pointer;
       background-repeat: no-repeat!important;
       background-size: cover!important;
@@ -90,71 +81,54 @@
       }
 
       &:hover {
-        box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        box-shadow: $boxShadow-hover;
       }
 
-      &.single-card {
+      &--with-overlay {
         min-height: 350px!important;
-
         &:hover {
-          box-shadow: 0 5px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
           transform: scale(1.05);
           -webkit-transform: scale(1.05);
           -moz-transform: scale(1.05);
           -ms-transform: scale(1.05);
           -o-transform: scale(1.05);
         }
+        
+        .slider-card-overlay {
+          @extend .overlay;
+          background: rgba(0, 0, 0, 0.6);
+          transition: opacity .3s ease-in-out;
+          border-radius: 12px;
+          &:hover {
+            background: rgba(0, 0, 0, 0.078);
+            opacity: 0;
+          }
+        }
+      }
+
+      &--with-actions {
+        min-height: 234px!important;
+        mat-card-actions {
+          position: absolute;
+          width: 100%;
+          bottom: 25px;
+          right: 30px;
+        }      
       }
     }
 
-    .rightRs, .leftRs {
+    &__rightRs, &__leftRs {
       top: -32px;
       position: absolute;
       transition: opacity .3s;
     }
   
-    .leftRs {
+    &__leftRs {
       right: 35px;
     }
   
-    .rightRs {
+    &__rightRs {
       right: 0;
     }
   }
-  
-  
-  .hidden {
-    opacity: 0;
-  }
-
-  mat-card.slider-card.single-card .overlay {
-    background: rgba(0, 0, 0, 0.6);
-    transition: opacity .3s ease-in-out;
-  }
-
-  mat-card.slider-card.single-card .overlay:hover {
-    background: rgba(0, 0, 0, 0.078);
-  }
-
-  mat-card.slider-card.single-card .overlay:hover {
-    opacity: 0;
-  }
-  
-  mat-card.slider-card.news-card img {
-    margin-left: -20px;
-    margin-top: -20px;
-    max-width: 250px;
-  }
-
-  mat-card.slider-card.news-card {
-    min-height: 234px!important;
-  }
-
-  mat-card.slider-card.news-card mat-card-actions {
-    position: absolute;
-    width: 100%;
-    bottom: 25px;
-    right: 30px;
-  }
-  
 }
